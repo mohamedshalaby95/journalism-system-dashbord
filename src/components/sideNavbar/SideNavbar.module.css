@@ -1,0 +1,23 @@
+.active {
+  color: #10b981 !important;
+  background-color: #ffffff14 !important;
+}
+
+.notActive {
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+.notActive:hover
+{
+    background-color: #ffffff14 !important;
+}
+
+.activeLink {
+  color: #10b981 !important;
+}
+
+.notActiveLink {
+  color: #ffffff !important;
+  background-color: transparent !important;
+}

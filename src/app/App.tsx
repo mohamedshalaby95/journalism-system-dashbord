@@ -10,6 +10,7 @@ import SideNavbar from "../components/sideNavbar/SideNavbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import Navbar from "../components/Navbar/Navbar";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -47,8 +48,34 @@ function App() {
                 </IconButton>
               </Box>
               <Box sx={{ position: "relative" }}>
+                <Navbar />
                 <Routes>
-                  <Route path="/" element={<>bcjbcdjce</>} />
+                  <Route path="" element={<>Home</>} />
+                  <Route path="admins">
+                    <Route path="" element={<><h1>Admins</h1></>} />
+                    <Route path="add" element={<>Add Admin</>} />
+                    <Route path=":id" element={<>Show Admin</>} />
+                    <Route path="edit/:id" element={<>Edit Admin</>} />
+                  </Route>
+                  <Route path="users" element={<>Users</>} />
+                  <Route path="category">
+                    <Route path="" element={<>Categories</>} />
+                    {/* <Route path="add" element={<>Add Category</>} />
+                    <Route path="edit/:id" element={<>Edit Category</>} /> */}
+                  </Route>
+                  <Route path="subcategory">
+                    <Route path="" element={<>Sub Categories</>} />
+                    {/* <Route path="add" element={<>Add Sub Category</>} />
+                    <Route path="edit/:id" element={<>Edit Sub Category</>} /> */}
+                  </Route>
+                  <Route path="post">
+                    <Route path="" element={<>Posts</>} />
+                    <Route path="pending" element={<>Pending Posts</>} />
+                    <Route path="add" element={<>Add Post</>} />
+                    <Route path="edit/:id" element={<>Edit Post</>} />
+                    <Route path=":id" element={<>Post</>} />
+                  </Route>
+                  <Route path="*" element={<>Home</>} />
                 </Routes>
               </Box>
             </BrowserRouter>
