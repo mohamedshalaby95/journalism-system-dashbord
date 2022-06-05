@@ -11,8 +11,9 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
-import { Login } from "@mui/icons-material";
+
 import AddAdmin from "../pages/add-admin/AddAdmin";
+import Login from "../components/login/Login";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
