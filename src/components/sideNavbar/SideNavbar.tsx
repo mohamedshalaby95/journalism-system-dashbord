@@ -19,7 +19,6 @@ const SideNavbar = () => {
     return location.pathname.includes(path) ? "active" : "";
   };
   const getNavLinkClass = (path: string) => {
-    console.log(location.pathname, path);
 
     return location.pathname === path ? "activeLink" : "";
   };
