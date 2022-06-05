@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
-import Login from "../components/login/Login";
+
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -56,7 +56,7 @@ function App() {
                   <Route path="" element={<>Home</>} />
                   <Route path="admins">
                     <Route path="" element={<><h1>Admins</h1></>} />
-                    <Route path="add" element={<>Add Admin</>} />
+                    <Route path="add" element={<AddAdmin />} />
                     <Route path=":id" element={<>Show Admin</>} />
                     <Route path="edit/:id" element={<>Edit Admin</>} />
                   </Route>
@@ -77,6 +77,7 @@ function App() {
                     <Route path="add" element={<>Add Post</>} />
                     <Route path="edit/:id" element={<>Edit Post</>} />
                     <Route path=":id" element={<>Post</>} />
+                   
                   </Route>
                   <Route path="*" element={<>Home</>} />
                 </Routes>
