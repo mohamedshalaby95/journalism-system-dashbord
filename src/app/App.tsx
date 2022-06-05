@@ -11,7 +11,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
-
+import { Login } from "@mui/icons-material";
+import AddAdmin from "../pages/add-admin/AddAdmin";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -29,7 +30,6 @@ function App() {
         <Box className="App">
           <Box className={classes.default.routingComponent}>
             <BrowserRouter>
-            
               <Box
                 sx={{ left: `${toggleNavbar}px ` }}
                 className={classes.default.sideNavbar}
@@ -52,10 +52,16 @@ function App() {
               <Box sx={{ position: "relative" }}>
                 <Navbar />
                 <Routes>
-                
                   <Route path="" element={<>Home</>} />
                   <Route path="admins">
-                    <Route path="" element={<><h1>Admins</h1></>} />
+                    <Route
+                      path=""
+                      element={
+                        <>
+                          <h1>Admins</h1>
+                        </>
+                      }
+                    />
                     <Route path="add" element={<AddAdmin />} />
                     <Route path=":id" element={<>Show Admin</>} />
                     <Route path="edit/:id" element={<>Edit Admin</>} />
@@ -77,7 +83,6 @@ function App() {
                     <Route path="add" element={<>Add Post</>} />
                     <Route path="edit/:id" element={<>Edit Post</>} />
                     <Route path=":id" element={<>Post</>} />
-                   
                   </Route>
                   <Route path="*" element={<>Home</>} />
                 </Routes>
