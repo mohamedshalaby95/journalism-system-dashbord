@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
-import AddAdmin from '../pages/add-admin/AddAdmin'
+
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -29,6 +29,7 @@ function App() {
         <Box className="App">
           <Box className={classes.default.routingComponent}>
             <BrowserRouter>
+            
               <Box
                 sx={{ left: `${toggleNavbar}px ` }}
                 className={classes.default.sideNavbar}
@@ -51,6 +52,7 @@ function App() {
               <Box sx={{ position: "relative" }}>
                 <Navbar />
                 <Routes>
+                
                   <Route path="" element={<>Home</>} />
                   <Route path="admins">
                     <Route path="" element={<><h1>Admins</h1></>} />
@@ -61,13 +63,13 @@ function App() {
                   <Route path="users" element={<>Users</>} />
                   <Route path="category">
                     <Route path="" element={<>Categories</>} />
-                    {/* <Route path="add" element={<>Add Category</>} />
-                    <Route path="edit/:id" element={<>Edit Category</>} /> */}
+                    <Route path="add" element={<>Add Category</>} />
+                    <Route path="edit/:id" element={<>Edit Category</>} />
                   </Route>
                   <Route path="subcategory">
                     <Route path="" element={<>Sub Categories</>} />
-                    {/* <Route path="add" element={<>Add Sub Category</>} />
-                    <Route path="edit/:id" element={<>Edit Sub Category</>} /> */}
+                    <Route path="add" element={<>Add Sub Category</>} />
+                    <Route path="edit/:id" element={<>Edit Sub Category</>} />
                   </Route>
                   <Route path="post">
                     <Route path="" element={<>Posts</>} />
@@ -83,6 +85,11 @@ function App() {
             </BrowserRouter>
           </Box>
         </Box>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   );
