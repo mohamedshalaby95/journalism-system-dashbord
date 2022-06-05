@@ -12,8 +12,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
 
-import AddAdmin from "../pages/add-admin/AddAdmin";
+import AddAdmin from "../pages/admins/AddAdmin";
 import Login from "../components/login/Login";
+import EditAdmin from "../pages/admins/EditAdmin";
+import Admins from "../pages/admins/Admins";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -58,14 +60,12 @@ function App() {
                     <Route
                       path=""
                       element={
-                        <>
-                          <h1>Admins</h1>
-                        </>
+                        <Admins />
                       }
                     />
                     <Route path="add" element={<AddAdmin />} />
                     <Route path=":id" element={<>Show Admin</>} />
-                    <Route path="edit/:id" element={<>Edit Admin</>} />
+                    <Route path="edit/:id" element={<EditAdmin />} />
                   </Route>
                   <Route path="users" element={<>Users</>} />
                   <Route path="category">
@@ -93,7 +93,7 @@ function App() {
         </Box>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} /> */}
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
