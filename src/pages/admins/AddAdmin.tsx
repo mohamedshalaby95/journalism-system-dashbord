@@ -1,5 +1,5 @@
 
-import AddAdminComponent from '../../components/add-admin/AddAdminComponent'
+import AddAdminComponent from '../../components/admins/add/AddAdminComponent'
 
 const AddAdmin = () => {
     return (
