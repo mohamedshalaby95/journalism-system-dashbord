@@ -12,8 +12,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
 
-import AddAdmin from "../pages/add-admin/AddAdmin";
+import AddAdmin from "../pages/admins/AddAdmin";
 import Login from "../components/login/Login";
+import EditAdmin from "../pages/admins/EditAdmin";
+import Admins from "../pages/admins/Admins";
+import Users from "../pages/users/Users";
+import AddPost from "../pages/posts/AddPost";
+import EditPost from "../pages/posts/EditPost";
+import Posts from "../pages/posts/Posts";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -58,16 +64,14 @@ function App() {
                     <Route
                       path=""
                       element={
-                        <>
-                          <h1>Admins</h1>
-                        </>
+                        <Admins />
                       }
                     />
                     <Route path="add" element={<AddAdmin />} />
                     <Route path=":id" element={<>Show Admin</>} />
-                    <Route path="edit/:id" element={<>Edit Admin</>} />
+                    <Route path="edit/:id" element={<EditAdmin />} />
                   </Route>
-                  <Route path="users" element={<>Users</>} />
+                  <Route path="users" element={<Users />} />
                   <Route path="category">
                     <Route path="" element={<>Categories</>} />
                     <Route path="add" element={<>Add Category</>} />
@@ -79,10 +83,10 @@ function App() {
                     <Route path="edit/:id" element={<>Edit Sub Category</>} />
                   </Route>
                   <Route path="post">
-                    <Route path="" element={<>Posts</>} />
+                    <Route path="" element={<Posts />} />
                     <Route path="pending" element={<>Pending Posts</>} />
-                    <Route path="add" element={<>Add Post</>} />
-                    <Route path="edit/:id" element={<>Edit Post</>} />
+                    <Route path="add" element={<AddPost />} />
+                    <Route path="edit/:id" element={<EditPost />} />
                     <Route path=":id" element={<>Post</>} />
                   </Route>
                   <Route path="*" element={<>Home</>} />
@@ -92,7 +96,7 @@ function App() {
           </Box>
         {/* <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} /> */}
           </Routes>
         </BrowserRouter> */}
         </Box>
