@@ -35,7 +35,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
-           <Box className={classes.default.routingComponent}>
+           {/* <Box className={classes.default.routingComponent}>
            <BrowserRouter>
               <Box
                 sx={{ left: `${toggleNavbar}px ` }}
@@ -93,12 +93,12 @@ function App() {
                 </Routes>
               </Box>
             </BrowserRouter> 
-          </Box>
-        {/* <BrowserRouter>
+          </Box> */}
+         <BrowserRouter>
           <Routes>
-            {/* <Route path="/login" element={<Login />} /> */}
-          {/* </Routes>
-        </BrowserRouter> */}
+             <Route path="/login" element={<Login />} /> 
+           </Routes>
+        </BrowserRouter> 
         </Box>
       </ThemeProvider>
     </Provider>
