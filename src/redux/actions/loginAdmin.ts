@@ -1,6 +1,6 @@
 import { LOGIN_ADMIN_SUCCUSE, LOGOUT_ADMIN } from "./actionTypes";
 import loginApi from "../../api/loginAdminApi";
-import Joi from "joi";
+
 
 import { startLoading, showSuccess, showError } from "./statusActions";
 import { IloginAdminProps } from "../../types/loginAdminProps";

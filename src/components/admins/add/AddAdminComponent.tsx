@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   FormControl,
@@ -9,9 +10,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addAdmin } from "../../../redux/actions/adminAction";
 
 const AddAdminComponent = () => {
   const roles = [
@@ -30,22 +32,26 @@ const AddAdminComponent = () => {
   ];
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch:any = useDispatch();
+  const [newAdmin,setNewAdmin]=useState({firstName:"",lastName:"",email:"",password:"",role:""})
+  const{hasError,errorStatus}=useSelector((state:any)=> state?.status)
 
   const handleSubmit = useCallback(
     (event: React.SyntheticEvent<EventTarget>) => {
       event.preventDefault();
-      // dispatch();
+     console.log(newAdmin);
+     
+       dispatch(addAdmin(newAdmin));
       // navigate("/users");
     },
-    [dispatch]
+    [dispatch,newAdmin]
   );
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement> | any) => {
       const { name, value } = event.target;
-      // setNewUser((oldUser) => ({ ...oldUser, [name]: value }));
+      setNewAdmin((oldUser) => ({ ...oldUser, [name]: value }));
     },
-    []
+    [setNewAdmin]
   );
 
   return (
@@ -67,6 +73,7 @@ const AddAdminComponent = () => {
             label="First Name"
             variant="outlined"
             name="firstName"
+            value={newAdmin.firstName}
             type="text"
             onChange={handleChange}
           />
@@ -76,6 +83,7 @@ const AddAdminComponent = () => {
             variant="outlined"
             name="lastName"
             type="text"
+            value={newAdmin.lastName}
             onChange={handleChange}
           />
 
@@ -84,6 +92,7 @@ const AddAdminComponent = () => {
             variant="outlined"
             name="email"
             type="email"
+            value={newAdmin.email}
             onChange={handleChange}
           />
 
@@ -92,6 +101,7 @@ const AddAdminComponent = () => {
             variant="outlined"
             name="password"
             type="password"
+            value={newAdmin.password}
             onChange={handleChange}
           />
 
@@ -102,6 +112,7 @@ const AddAdminComponent = () => {
               id="demo-simple-select"
               label="Categories"
               name="role"
+              value={newAdmin.role}
               defaultValue=""
               onChange={handleChange}
             >
@@ -115,6 +126,7 @@ const AddAdminComponent = () => {
                 })}
             </Select>
           </FormControl>
+          {hasError?  <Alert severity="error">{hasError?errorStatus.message:''}</Alert>:''}
 
           <Button variant="contained" color="success" type="submit">
             Add
