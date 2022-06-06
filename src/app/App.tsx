@@ -29,8 +29,8 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
-          <Box className={classes.default.routingComponent}>
-            <BrowserRouter>
+           <Box className={classes.default.routingComponent}>
+           <BrowserRouter>
               <Box
                 sx={{ left: `${toggleNavbar}px ` }}
                 className={classes.default.sideNavbar}
@@ -88,14 +88,14 @@ function App() {
                   <Route path="*" element={<>Home</>} />
                 </Routes>
               </Box>
-            </BrowserRouter>
+            </BrowserRouter> 
           </Box>
-        </Box>
-        <BrowserRouter>
+        {/* <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
           </Routes>
-        </BrowserRouter>
+        </BrowserRouter> */}
+        </Box>
       </ThemeProvider>
     </Provider>
   );

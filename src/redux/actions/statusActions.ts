@@ -4,4 +4,4 @@ export const startLoading = () => ({ type: START_LOADING });
 
 export const showSuccess = () => ({ type: SHOW_SUCCESS });
 
-export const showError = (status:string) => ({ type: SHOW_ERROR, payload: status });
+export const showError = (status:string,message:string) => ({ type: SHOW_ERROR, payload: {status,message}});
