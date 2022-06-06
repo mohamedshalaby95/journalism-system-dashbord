@@ -17,6 +17,7 @@ import Login from "../components/login/Login";
 import EditAdmin from "../pages/admins/EditAdmin";
 import Admins from "../pages/admins/Admins";
 import Users from "../pages/users/Users";
+import AddPost from "../pages/posts/AddPost";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -82,7 +83,7 @@ function App() {
                   <Route path="post">
                     <Route path="" element={<>Posts</>} />
                     <Route path="pending" element={<>Pending Posts</>} />
-                    <Route path="add" element={<>Add Post</>} />
+                    <Route path="add" element={<AddPost />} />
                     <Route path="edit/:id" element={<>Edit Post</>} />
                     <Route path=":id" element={<>Post</>} />
                   </Route>
