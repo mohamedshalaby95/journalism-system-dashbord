@@ -26,7 +26,6 @@ import Posts from "../pages/posts/Posts";
 
 import Home from "../pages/home/Home";
 
-import CategotyTable from "../components/category-table/CategoryTable";
 import { MenuOpen } from "@mui/icons-material";
 
 import CategotyTable from "../components/category-table/CategoryTable";
@@ -57,7 +56,7 @@ function App() {
     }
   }
 
-  function ProtectedRoute({ children }:any) {
+  function ProtectedRoute({ children }: any) {
     if (!localStorage.getItem("userInf")) {
       return <Navigate to="/login" />;
     } else {
@@ -69,12 +68,9 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
-
-        <ToastContainer />
+          <ToastContainer />
           {userLogged ? (
-            
             <Box className={classes.default.routingComponent}>
-
               <BrowserRouter>
                 <Box
                   sx={{ left: `${toggleNavbar}px ` }}
@@ -98,8 +94,8 @@ function App() {
                 <Box sx={{ position: "relative" }}>
                   <Navbar />
                   <Routes>
-                    <Route path="/home" element={<Home /> } />
-                    <Route path="" element={<Navigate to="/home" replace /> } />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="" element={<Navigate to="/home" replace />} />
                     <Route path="admins">
                       <Route
                         path=""
@@ -151,7 +147,6 @@ function App() {
               </Routes>
             </BrowserRouter>
           )}
-
         </Box>
       </ThemeProvider>
     </Provider>
