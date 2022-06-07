@@ -23,10 +23,14 @@ import Users from "../pages/users/Users";
 import AddPost from "../pages/posts/AddPost";
 import EditPost from "../pages/posts/EditPost";
 import Posts from "../pages/posts/Posts";
+
 import Home from "../pages/home/Home";
 
 import CategotyTable from "../components/category-table/CategoryTable";
 import { MenuOpen } from "@mui/icons-material";
+
+import CategotyTable from "../components/category-table/CategoryTable";
+
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
   const [toggleNavbar, setToggleNavbar] = useState<number>(-260);
@@ -65,6 +69,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
+
         <ToastContainer />
           {userLogged ? (
             
@@ -146,6 +151,7 @@ function App() {
               </Routes>
             </BrowserRouter>
           )}
+
         </Box>
       </ThemeProvider>
     </Provider>
