@@ -20,6 +20,7 @@ import Users from "../pages/users/Users";
 import AddPost from "../pages/posts/AddPost";
 import EditPost from "../pages/posts/EditPost";
 import Posts from "../pages/posts/Posts";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -35,6 +36,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
+        <ToastContainer />
            <Box className={classes.default.routingComponent}>
            <BrowserRouter>
               <Box
