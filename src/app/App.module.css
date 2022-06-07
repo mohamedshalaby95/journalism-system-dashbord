@@ -3,11 +3,11 @@
   position: fixed;
   top: 0;
   bottom: 0;
- left:0 ;
+  left: 0;
   width: 260px;
   border-right: 1px solid #2e344e;
   transition-duration: 1s;
-  z-index:100 ;
+  z-index: 100;
 }
 
 .toggleButton {
@@ -17,25 +17,23 @@
   top: 10%;
   width: 30px;
   padding: 10px;
-  background-color: #191D2B;
+  background-color: #191d2b;
   display: flex;
   justify-content: center;
   align-items: center;
   transition-duration: 1s;
   z-index: 100;
- 
 }
-a{
+a {
   text-decoration: none;
 }
-.routingComponent{
+.routingComponent {
   position: fixed;
   left: 260 !important;
   right: 0;
   top: 0;
   bottom: 0;
- 
- 
+
   overflow-y: scroll;
   overflow-x: hidden;
   position: fixed;
@@ -45,30 +43,21 @@ a{
   right: 0;
   display: block;
   z-index: 0;
-  color: white;
-  
-    
-     
-  
 }
 @media (min-width: 1025px) {
- 
   .toggleButton {
     display: none;
   }
-  .sideNavbar{
+  .sideNavbar {
     left: 0 !important;
-    }
-    .routingComponent{
-      left: 260px;
-    } 
-
+  }
+  .routingComponent {
+    left: 260px;
+  }
 }
 
 @media (max-width: 1025px) {
- 
-  .routingComponent{
-    left:  0;
-  } 
-
+  .routingComponent {
+    left: 0;
+  }
 }

@@ -15,3 +15,14 @@ export const DELETE_CATEGORY_FAILURE = "DELETE_CATEGORY_FAILURE";
 export const UPDATE_CATEGORY_SUCCESS = "UPDATE_CATEGORY_SUCCESS";
 export const ADD_CATEGORY_SUCCESS = "ADD_CATEGORY_SUCCESS";
 
+
+export const LOGIN_ADMIN_SUCCUSE = "LOGIN/LOGIN_ADMIN_SUCCUSE";
+
+export const LOGOUT_ADMIN="LOGOUT/LOGOUT_ADMIN_SUCCUSE"
+
+
+//-------------------------------------------admin------------------------------------------
+
+export const Add_ADMIN="ADMINS/ADD_ADMIN"
+
+export const GET_ALL_ADMINS = "ADMINS/GET_ALL_ADMINS";

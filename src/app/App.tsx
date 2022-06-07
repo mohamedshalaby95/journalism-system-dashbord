@@ -12,6 +12,17 @@ import CloseIcon from "@mui/icons-material/Close";
 // import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Category from "../pages/Category";
 import { ToastContainer } from "react-toastify";
+// import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import Navbar from "../components/Navbar/Navbar";
+
+import AddAdmin from "../pages/admins/AddAdmin";
+import Login from "../components/login/Login";
+import EditAdmin from "../pages/admins/EditAdmin";
+import Admins from "../pages/admins/Admins";
+import Users from "../pages/users/Users";
+import AddPost from "../pages/posts/AddPost";
+import EditPost from "../pages/posts/EditPost";
+import Posts from "../pages/posts/Posts";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -52,16 +63,52 @@ function App() {
                 </IconButton>
               </Box>
               <Box sx={{ position: "relative" }}>
+                <Navbar />
                 <Routes>
-                  <Route path="/" element={ <Category />} />
+                  <Route path="" element={<>Home</>} />
+                  <Route path="admins">
+                    <Route
+                      path=""
+                      element={
+                        <Admins />
+                      }
+                    />
+                    <Route path="add" element={<AddAdmin />} />
+                    <Route path=":id" element={<>Show Admin</>} />
+                    <Route path="edit/:id" element={<EditAdmin />} />
+                  </Route>
+                  <Route path="users" element={<Users />} />
+                  <Route path="category">
+                    <Route path="" element={<>Categories</>} />
+                    <Route path="add" element={<>Add Category</>} />
+                    <Route path="edit/:id" element={<>Edit Category</>} />
+                  </Route>
+                  <Route path="subcategory">
+                    <Route path="" element={<>Sub Categories</>} />
+                    <Route path="add" element={<>Add Sub Category</>} />
+                    <Route path="edit/:id" element={<>Edit Sub Category</>} />
+                  </Route>
+                  <Route path="post">
+                    <Route path="" element={<Posts />} />
+                    <Route path="pending" element={<>Pending Posts</>} />
+                    <Route path="add" element={<AddPost />} />
+                    <Route path="edit/:id" element={<EditPost />} />
+                    <Route path=":id" element={<>Post</>} />
+                  </Route>
+                  <Route path="*" element={<>Home</>} />
                 </Routes>
               </Box>
-            </BrowserRouter>
+            </BrowserRouter> 
           </Box>
 
 
 
          
+         {/* <BrowserRouter>
+          <Routes>
+             <Route path="/login" element={<Login />} /> 
+           </Routes>
+        </BrowserRouter>  */}
         </Box>
       </ThemeProvider>
     </Provider>
