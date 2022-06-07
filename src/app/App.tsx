@@ -23,7 +23,7 @@ import Users from "../pages/users/Users";
 import AddPost from "../pages/posts/AddPost";
 import EditPost from "../pages/posts/EditPost";
 import Posts from "../pages/posts/Posts";
-
+import CategotyTable from "../components/category-table/CategoryTable";
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
   const [toggleNavbar, setToggleNavbar] = useState<number>(-260);
@@ -38,7 +38,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
-        <ToastContainer />
+          <ToastContainer />
 
           <Box className={classes.default.routingComponent}>
             <BrowserRouter>
@@ -67,19 +67,14 @@ function App() {
                 <Routes>
                   <Route path="" element={<>Home</>} />
                   <Route path="admins">
-                    <Route
-                      path=""
-                      element={
-                        <Admins />
-                      }
-                    />
+                    <Route path="" element={<Admins />} />
                     <Route path="add" element={<AddAdmin />} />
                     <Route path=":id" element={<>Show Admin</>} />
                     <Route path="edit/:id" element={<EditAdmin />} />
                   </Route>
                   <Route path="users" element={<Users />} />
                   <Route path="category">
-                    <Route path="" element={<>Categories</>} />
+                    <Route path="" element={<Category />} />
                     <Route path="add" element={<>Add Category</>} />
                     <Route path="edit/:id" element={<>Edit Category</>} />
                   </Route>
@@ -98,13 +93,10 @@ function App() {
                   <Route path="*" element={<>Home</>} />
                 </Routes>
               </Box>
-            </BrowserRouter> 
+            </BrowserRouter>
           </Box>
 
-
-
-         
-         {/* <BrowserRouter>
+          {/* <BrowserRouter>
           <Routes>
              <Route path="/login" element={<Login />} /> 
            </Routes>
