@@ -5,8 +5,12 @@ import loginApi from "../../api/loginAdminApi";
 import { startLoading, showSuccess, showError } from "./statusActions";
 import { IloginAdminProps } from "../../types/loginAdminProps";
 import { IdataFromLogin } from "../../types/dataFromLogin";
+import { useNavigate } from "react-router-dom";
+
+
 
 export const loginAdmin = (data:IloginAdminProps ) => (dispatch: any) => {
+  
   dispatch(startLoading());
   loginApi
     .post("", data)
@@ -14,6 +18,7 @@ export const loginAdmin = (data:IloginAdminProps ) => (dispatch: any) => {
       dispatch(loginAdminSuccess(response.data));
       dispatch(showSuccess());
       localStorage.setItem("userInf", JSON.stringify(response.data));
+    
     })
     .catch((err) => {
       dispatch(
@@ -25,6 +30,7 @@ export const loginAdmin = (data:IloginAdminProps ) => (dispatch: any) => {
         )
       );
     });
+  
 };
 
 export const loginAdminSuccess = (users: IdataFromLogin) => ({
