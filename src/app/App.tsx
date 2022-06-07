@@ -11,7 +11,6 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 // import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Category from "../pages/Category";
-import { ToastContainer } from "react-toastify";
 // import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
 
@@ -23,12 +22,11 @@ import Users from "../pages/users/Users";
 import AddPost from "../pages/posts/AddPost";
 import EditPost from "../pages/posts/EditPost";
 import Posts from "../pages/posts/Posts";
+import { ToastContainer } from "react-toastify";
 
 import Home from "../pages/home/Home";
 
 import { MenuOpen } from "@mui/icons-material";
-
-import CategotyTable from "../components/category-table/CategoryTable";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
