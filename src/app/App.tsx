@@ -9,7 +9,9 @@ import { useCallback, useState } from "react";
 import SideNavbar from "../components/sideNavbar/SideNavbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+// import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import Category from "../pages/Category";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -25,6 +27,8 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
+        <ToastContainer />
+
           <Box className={classes.default.routingComponent}>
             <BrowserRouter>
               <Box
@@ -42,17 +46,22 @@ function App() {
                   {statusButton ? (
                     <CloseIcon fontSize="large" sx={{ color: "white" }} />
                   ) : (
-                    <MenuOpenIcon fontSize="large" sx={{ color: "white" }} />
+                    // <MenuOpenIcon fontSize="large" sx={{ color: "white" }} />
+                    <></>
                   )}
                 </IconButton>
               </Box>
               <Box sx={{ position: "relative" }}>
                 <Routes>
-                  <Route path="/" element={<>bcjbcdjce</>} />
+                  <Route path="/" element={ <Category />} />
                 </Routes>
               </Box>
             </BrowserRouter>
           </Box>
+
+
+
+         
         </Box>
       </ThemeProvider>
     </Provider>
