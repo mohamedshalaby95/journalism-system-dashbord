@@ -1,4 +1,4 @@
 export interface IreducerActionsProps {
     type: string;
-    payload:any;
+    payload?:any;
   }

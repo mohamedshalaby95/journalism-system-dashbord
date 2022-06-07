@@ -9,7 +9,10 @@ import { useCallback, useState } from "react";
 import SideNavbar from "../components/sideNavbar/SideNavbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+// import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import Category from "../pages/Category";
+import { ToastContainer } from "react-toastify";
+// import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
 
 import AddAdmin from "../pages/admins/AddAdmin";
@@ -35,8 +38,10 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
-           <Box className={classes.default.routingComponent}>
-           <BrowserRouter>
+        <ToastContainer />
+
+          <Box className={classes.default.routingComponent}>
+            <BrowserRouter>
               <Box
                 sx={{ left: `${toggleNavbar}px ` }}
                 className={classes.default.sideNavbar}
@@ -52,7 +57,8 @@ function App() {
                   {statusButton ? (
                     <CloseIcon fontSize="large" sx={{ color: "white" }} />
                   ) : (
-                    <MenuOpenIcon fontSize="large" sx={{ color: "white" }} />
+                    // <MenuOpenIcon fontSize="large" sx={{ color: "white" }} />
+                    <></>
                   )}
                 </IconButton>
               </Box>
@@ -94,6 +100,10 @@ function App() {
               </Box>
             </BrowserRouter> 
           </Box>
+
+
+
+         
          {/* <BrowserRouter>
           <Routes>
              <Route path="/login" element={<Login />} /> 

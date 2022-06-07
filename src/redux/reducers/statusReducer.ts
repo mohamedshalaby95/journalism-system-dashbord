@@ -5,6 +5,7 @@ const initialState = {
 	loading: false,
 	hasError: false,
 	errorStatus: null,
+	success:false
 };
 
 const statusReducer = (state = initialState, { type, payload }:IreducerActionsProps) => {
@@ -13,6 +14,8 @@ const statusReducer = (state = initialState, { type, payload }:IreducerActionsPr
 			return {
 				...state,
 				loading: true,
+				success:false
+
 			};
 		case SHOW_SUCCESS:
 			return {
@@ -20,6 +23,7 @@ const statusReducer = (state = initialState, { type, payload }:IreducerActionsPr
 				loading: false,
 				hasError: false,
 				errorStatus: null,
+				success:true
 			};
 		case SHOW_ERROR:
 			return {
@@ -27,6 +31,7 @@ const statusReducer = (state = initialState, { type, payload }:IreducerActionsPr
 				loading: false,
 				hasError: true,
 				errorStatus: payload,
+				success:false
 			};
 		default:
 			return state;
