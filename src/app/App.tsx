@@ -29,7 +29,6 @@ import Home from "../pages/home/Home";
 import CategotyTable from "../components/category-table/CategoryTable";
 import { MenuOpen } from "@mui/icons-material";
 
-import CategotyTable from "../components/category-table/CategoryTable";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
