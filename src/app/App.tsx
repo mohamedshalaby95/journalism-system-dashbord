@@ -9,7 +9,10 @@ import { useCallback, useEffect, useState } from "react";
 import SideNavbar from "../components/sideNavbar/SideNavbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+// import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import Category from "../pages/Category";
+import { ToastContainer } from "react-toastify";
+// import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
 
 import AddAdmin from "../pages/admins/AddAdmin";
@@ -22,6 +25,8 @@ import EditPost from "../pages/posts/EditPost";
 import Posts from "../pages/posts/Posts";
 import Home from "../pages/home/Home";
 
+import CategotyTable from "../components/category-table/CategoryTable";
+import { MenuOpen } from "@mui/icons-material";
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
   const [toggleNavbar, setToggleNavbar] = useState<number>(-260);
@@ -60,8 +65,11 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
+        <ToastContainer />
           {userLogged ? (
+            
             <Box className={classes.default.routingComponent}>
+
               <BrowserRouter>
                 <Box
                   sx={{ left: `${toggleNavbar}px ` }}
@@ -78,7 +86,7 @@ function App() {
                     {statusButton ? (
                       <CloseIcon fontSize="large" sx={{ color: "white" }} />
                     ) : (
-                      <MenuOpenIcon fontSize="large" sx={{ color: "white" }} />
+                      <MenuOpen fontSize="large" sx={{ color: "white" }} />
                     )}
                   </IconButton>
                 </Box>
@@ -109,7 +117,7 @@ function App() {
                     </Route>
                     <Route path="users" element={<Users />} />
                     <Route path="category">
-                      <Route path="" element={<>Categories</>} />
+                      <Route path="" element={<Category />} />
                       <Route path="add" element={<>Add Category</>} />
                       <Route path="edit/:id" element={<>Edit Category</>} />
                     </Route>
