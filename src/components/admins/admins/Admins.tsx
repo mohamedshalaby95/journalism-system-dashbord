@@ -8,16 +8,17 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { IconButton } from "@mui/material";
-import { Delete, Edit } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllAdmin } from '../../../redux/actions/adminAction';
+import { deleteAdmin, getAllAdmin } from '../../../redux/actions/adminAction';
+import DeleteCategoryPopus from '../../../utilities/delete-popup/DeletePop'
 
 import CircularIndeterminate from '../../spinner/spinner'
-import { any } from 'joi';
+
+
 
 const Admins = () => {
+ 
   const [page, setPage] =useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const dispatch:any=useDispatch();
@@ -25,7 +26,7 @@ const Admins = () => {
 
  const{loading}=useSelector((state:any)=> state?.status)
  
- console.log("loading",loading);
+
  
 
 
@@ -42,6 +43,7 @@ const Admins = () => {
 
 useEffect(()=>{
   dispatch(getAllAdmin())
+
 },[dispatch])
 
 
@@ -73,9 +75,10 @@ useEffect(()=>{
                   <TableCell>{row.email}</TableCell>
                   <TableCell>{row.role}</TableCell>
                   <TableCell>
-                    <IconButton aria-label="delete" size="large">
-                      <Delete color="error" />
-                    </IconButton>
+                  
+                      <DeleteCategoryPopus 
+                      id={row._id} dispatchFunction={deleteAdmin} />
+                
                    
                   </TableCell>
                 </TableRow>
@@ -93,6 +96,7 @@ useEffect(()=>{
       onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeRowsPerPage}
     />
+    
   </Paper>
   }
   </>

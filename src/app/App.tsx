@@ -11,7 +11,6 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 // import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Category from "../pages/Category";
-import { ToastContainer } from "react-toastify";
 // import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Navbar from "../components/Navbar/Navbar";
 
@@ -23,13 +22,12 @@ import Users from "../pages/users/Users";
 import AddPost from "../pages/posts/AddPost";
 import EditPost from "../pages/posts/EditPost";
 import Posts from "../pages/posts/Posts";
+import { ToastContainer } from "react-toastify";
 
 import Home from "../pages/home/Home";
 
 import CategotyTable from "../components/category-table/CategoryTable";
 import { MenuOpen } from "@mui/icons-material";
-
-import CategotyTable from "../components/category-table/CategoryTable";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -57,7 +55,7 @@ function App() {
     }
   }
 
-  function ProtectedRoute({ children }:any) {
+  function ProtectedRoute({ children }: any) {
     if (!localStorage.getItem("userInf")) {
       return <Navigate to="/login" />;
     } else {
@@ -69,12 +67,9 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Box className="App">
-
-        <ToastContainer />
+          <ToastContainer />
           {userLogged ? (
-            
             <Box className={classes.default.routingComponent}>
-
               <BrowserRouter>
                 <Box
                   sx={{ left: `${toggleNavbar}px ` }}
@@ -98,8 +93,8 @@ function App() {
                 <Box sx={{ position: "relative" }}>
                   <Navbar />
                   <Routes>
-                    <Route path="/home" element={<Home /> } />
-                    <Route path="" element={<Navigate to="/home" replace /> } />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="" element={<Navigate to="/home" replace />} />
                     <Route path="admins">
                       <Route
                         path=""
@@ -151,7 +146,6 @@ function App() {
               </Routes>
             </BrowserRouter>
           )}
-
         </Box>
       </ThemeProvider>
     </Provider>
