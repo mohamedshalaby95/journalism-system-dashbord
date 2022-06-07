@@ -20,7 +20,7 @@ import { Icategory } from "../../types/category";
 //     type: FETCH_CATEGORY_REQUEST,
 //   };
 // }
-const notify = (input:string) => toast(input);
+const notify = (input: string) => toast(input);
 
 //back
 export function fetchCategorySuccess(data: any) {
@@ -48,7 +48,7 @@ export const FetchCategories = () => {
       })
       .then((filterd) => dispatch(fetchCategorySuccess(filterd)))
       .catch((error) => {
-        dispatch(showError(error));
+        dispatch(showError(error, "Fuck World"));
       });
   };
 };
@@ -87,7 +87,7 @@ export const deleteCategory = (id: string) => {
         dispatch(showSuccess());
       })
       .catch((error) => {
-        dispatch(showError(error));
+        dispatch(showError(error, "fuck you"));
       });
   };
 };
@@ -107,13 +107,11 @@ export const UpdateCategory = (category: Icategory, title: string) => {
       .then((res) => {
         dispatch(updateCategorySuccess({ ...res.data, title }));
         dispatch(showSuccess());
-        notify("category Updated suuccefully")
-
+        notify("category Updated suuccefully");
       })
       .catch((error) => {
-        dispatch(showError(error));
-         notify("something went wrong")
-
+        dispatch(showError(error , "kosom menna"));
+        notify("something went wrong");
       });
   };
 };
@@ -133,13 +131,11 @@ export const addCategory = (title: string) => {
         console.log(res);
         dispatch(addCategorySuccess(res.data));
         dispatch(showSuccess());
-        notify("category added suuccefully")
-
+        notify("category added suuccefully");
       })
       .catch((error) => {
-        dispatch(showError(error));
-        notify("something went wrong")
-
+        dispatch(showError(error , "fuck hamody"));
+        notify("something went wrong");
       });
   };
 };
