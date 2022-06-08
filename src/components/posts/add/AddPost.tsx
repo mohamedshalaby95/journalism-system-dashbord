@@ -109,6 +109,24 @@ const AddPost = () => {
             </Select>
           </FormControl>
 
+
+
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">region </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="region"
+              name="region"
+              defaultValue=""
+              onChange={handleChange}
+            >
+              <MenuItem value="egypt">Egypt</MenuItem>
+              <MenuItem value="america">America</MenuItem>
+              <MenuItem value="england">England</MenuItem>
+            </Select>
+          </FormControl>
+
           <label htmlFor="contained-button-file">
           <Input
             accept="image/*"
