@@ -29,6 +29,7 @@ import Home from "../pages/home/Home";
 import CategotyTable from "../components/category-table/CategoryTable";
 import { MenuOpen } from "@mui/icons-material";
 
+
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
   const [toggleNavbar, setToggleNavbar] = useState<number>(-260);
