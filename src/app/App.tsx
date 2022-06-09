@@ -25,6 +25,7 @@ import Posts from "../pages/posts/Posts";
 import { ToastContainer } from "react-toastify";
 
 import Home from "../pages/home/Home";
+import SubCategory from "../pages/SubCategory";
 
 import { MenuOpen } from "@mui/icons-material";
 
@@ -121,7 +122,7 @@ function App() {
                       <Route path="edit/:id" element={<>Edit Category</>} />
                     </Route>
                     <Route path="subcategory">
-                      <Route path="" element={<>Sub Categories</>} />
+                      <Route path="" element={<SubCategory />} />
                       <Route path="add" element={<>Add Sub Category</>} />
                       <Route path="edit/:id" element={<>Edit Sub Category</>} />
                     </Route>

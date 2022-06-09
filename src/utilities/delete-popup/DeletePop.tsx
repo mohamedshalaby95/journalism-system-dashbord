@@ -34,14 +34,14 @@ function DeleteCategoryPopus(props: any) {
     dispatch(props.dispatchFunction(props.id));
 
     handleClose();
-    let check: any = localStorage.getItem("check");
+    // let check: any = localStorage.getItem("check");
 
-    if (check) {
-      notify("deleted");
-      localStorage.removeItem("check");
-    } else {
-      notify("some thing went wrong");
-    }
+    // if (check) {
+    //   notify("deleted");
+    //   localStorage.removeItem("check");
+    // } else {
+    //   notify("some thing went wrong");
+    // }
   }, [props, dispatch, notify, hasError, loading]);
 
   return (
