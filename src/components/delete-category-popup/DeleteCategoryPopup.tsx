@@ -31,12 +31,12 @@ function DeleteCategoryPopus(props: any) {
   const confirmDelete = React.useCallback(() => {
     dispatch(deleteCategory(props.id));
     // handleClose();
-    if (success) {
-      //  alert("deleted");
-      notify("deleted");
-    } else {
-      notify("some thing went wrong");
-    }
+    // if (success) {
+    //   //  alert("deleted");
+    //   notify("deleted");
+    // } else {
+    //   notify("some thing went wrong");
+    // }
   }, [props, dispatch, success]);
   return (
     <Box py={4}>

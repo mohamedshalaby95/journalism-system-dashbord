@@ -28,3 +28,8 @@ export const Add_ADMIN="ADMINS/ADD_ADMIN"
 export const GET_ALL_ADMINS = "ADMINS/GET_ALL_ADMINS";
 
 export const DELETE_ADMIN="AMINS/DELETE_ADMIN"
+// ---------------sub categories --------------
+export const ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY"
+export const FETCH_SUB_CATEGORY ="FETCH_SUB_CETEGORY"
+export const DELETE_SUB_CATEGORY ="DELETE_SUB_CETEGORY"
+export const UPDATE_SUB_CATEGORY ="UPDATE_SUB_CETEGORY"
