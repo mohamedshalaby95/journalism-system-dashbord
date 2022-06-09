@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import {
+  Alert,
   FormControl,
   Input,
   InputLabel,
@@ -21,6 +22,7 @@ import {
   addSubCategory,
   addSubCategoryAction,
 } from "../../redux/actions/subCategoryAction";
+import validateSubCategoryForm from "../../validation/subCategory/subCategoryValidation";
 
 const style = {
   position: "absolute" as "absolute",
@@ -35,6 +37,7 @@ type propType = { state: boolean };
 
 export default function AddSubCategoryPopup() {
   const [open, setOpen] = React.useState(false);
+  const [errorList, setErrorList] = React.useState([]);
   const [inputValue, setInputValue] = React.useState("");
   const [category, setCategory] = React.useState("");
   const handleOpen = () => setOpen(true);
@@ -48,10 +51,18 @@ export default function AddSubCategoryPopup() {
   const addHandler = () => {
     // dispatch(addCategory(inputValue));
     //add add sub category action creator
-    dispatch(addSubCategory({ title: inputValue, parent: category }));
-
-    handleClose();
-    setInputValue("");
+    let validateSubCategoryFormResult: any = validateSubCategoryForm({
+      category: category,
+      subcategory: inputValue,
+    });
+    if (validateSubCategoryFormResult.error) {
+      setErrorList(validateSubCategoryFormResult.error.details);
+    } else {
+      dispatch(addSubCategory({ title: inputValue, parent: category }));
+      handleClose();
+      setInputValue("");
+      setErrorList([]);
+    }
   };
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value as string);
@@ -103,7 +114,17 @@ export default function AddSubCategoryPopup() {
               placeholder="Add Sub Category"
               value={inputValue}
               onChange={inputHandler}
+              name="inputValue"
             />
+            {errorList
+              ? errorList.map((error: any, index: any) => {
+                  return (
+                    <Alert key={index} severity="error">
+                      {error.message}
+                    </Alert>
+                  );
+                })
+              : ""}
             <Button variant="contained" onClick={addHandler}>
               Add
             </Button>
