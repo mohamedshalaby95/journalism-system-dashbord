@@ -12,6 +12,7 @@ import Joi from "joi";
 
 import { loginAdmin } from "../../redux/actions/loginAdmin";
 import { useNavigate } from "react-router-dom";
+import validateLoginForm from "../../validation/login/loginValidation";
 
 const Login = () => {
   const [login, setLogin] = useState({ email: "", password: "" });
@@ -19,18 +20,7 @@ const Login = () => {
   const dispatch: any = useDispatch();
   const navigate=useNavigate()
 
-  function validateLoginForm(login: any) {
-    const schema = Joi.object({
-      password: Joi.string()
-        .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
-        .required(),
-      email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
-        .required(),
-    });
-
-    return schema.validate(login, { abortEarly: false });
-  }
+ 
 
   const { loading, hasError, errorStatus } = useSelector(
     (state: any) => state.status
