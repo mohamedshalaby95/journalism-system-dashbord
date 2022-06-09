@@ -56,7 +56,6 @@ const categoryReducer = (state = initState, action: ICategoryAction) => {
       };
     }
     case ADD_CATEGORY_SUCCESS: {
-      console.log([...state.data, action.payload]);
       return {
         data: [...state.data, action.payload],
       };

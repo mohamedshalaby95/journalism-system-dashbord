@@ -128,7 +128,6 @@ export const addCategory = (title: string) => {
     categoryApi
       .post("", { title })
       .then((res) => {
-        console.log(res);
         dispatch(addCategorySuccess(res.data));
         dispatch(showSuccess());
         notify("category added suuccefully");
@@ -139,3 +138,4 @@ export const addCategory = (title: string) => {
       });
   };
 };
+
