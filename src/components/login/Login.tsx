@@ -35,7 +35,9 @@ const Login = () => {
   const { loading, hasError, errorStatus } = useSelector(
     (state: any) => state.status
   );
-
+  const {userInf}=useSelector((state:any)=> state. adminData)
+  console.log(userInf);
+  
   const handleSubmit = useCallback(
     (event: React.FormEvent) => {
       event.preventDefault();
@@ -45,21 +47,20 @@ const Login = () => {
       } else {
         dispatch(loginAdmin(login));
      
+ 
       }
     },
-    [dispatch, login]
+    [dispatch, login,hasError, navigate]
     );
-    useEffect(()=>{
-      if(hasError){
-        setLogin((old:any)=> ({email:old.email,password:old.passwoed=""}) )
-      }
-      
-    },[setLogin,hasError])
-    if(!hasError){
-       navigate("");
-      
-  }
   
+    useEffect(()=>{
+      
+          if(userInf){
+            navigate("");
+           
+       }
+    },[userInf, navigate])
+    
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
