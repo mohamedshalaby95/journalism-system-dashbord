@@ -14,6 +14,7 @@ import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addAdmin } from "../../../redux/actions/adminAction";
+import validateAdminForm from "../../../validation/admin/adminValidation";
 
 const AddAdminComponent = () => {
   const roles = [
@@ -32,19 +33,29 @@ const AddAdminComponent = () => {
   ];
 
   const navigate = useNavigate();
-  const dispatch:any = useDispatch();
-  const [newAdmin,setNewAdmin]=useState({firstName:"",lastName:"",email:"",password:"",role:""})
-  const{hasError,errorStatus}=useSelector((state:any)=> state?.status)
+  const dispatch: any = useDispatch();
+  const [errorList, setErrorList] = useState([]);
+  const [newAdmin, setNewAdmin] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    role: "",
+  });
+  const { hasError, errorStatus } = useSelector((state: any) => state?.status);
 
   const handleSubmit = useCallback(
     (event: React.SyntheticEvent<EventTarget>) => {
       event.preventDefault();
-     console.log(newAdmin);
-     
-       dispatch(addAdmin(newAdmin));
-      // navigate("/users");
+
+      let validationAdminFormResult: any = validateAdminForm(newAdmin);
+      if (validationAdminFormResult.error) {
+        setErrorList(validationAdminFormResult.error.details);
+      } else {
+        dispatch(addAdmin(newAdmin));
+      }
     },
-    [dispatch,newAdmin]
+    [dispatch, newAdmin]
   );
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement> | any) => {
@@ -56,7 +67,7 @@ const AddAdminComponent = () => {
 
   return (
     <>
-      <Box  width="70%" margin="40px auto" >
+      <Box width="70%" margin="40px auto">
         <Stack
           component="form"
           spacing={2}
@@ -78,6 +89,18 @@ const AddAdminComponent = () => {
             onChange={handleChange}
           />
 
+          {errorList
+            ? errorList.map((error: any, index: any) => {
+                if (error.path[0] === "firstName") {
+                  return (
+                    <Alert key={index} severity="error">
+                      {error.message}
+                    </Alert>
+                  );
+                }
+              })
+            : ""}
+
           <TextField
             label="Last Name"
             variant="outlined"
@@ -86,6 +109,18 @@ const AddAdminComponent = () => {
             value={newAdmin.lastName}
             onChange={handleChange}
           />
+
+          {errorList
+            ? errorList.map((error: any, index: any) => {
+                if (error.path[0] === "lastName") {
+                  return (
+                    <Alert key={index} severity="error">
+                      {error.message}
+                    </Alert>
+                  );
+                }
+              })
+            : ""}
 
           <TextField
             label="Email"
@@ -96,6 +131,18 @@ const AddAdminComponent = () => {
             onChange={handleChange}
           />
 
+          {errorList
+            ? errorList.map((error: any, index: any) => {
+                if (error.path[0] === "email") {
+                  return (
+                    <Alert key={index} severity="error">
+                      {error.message}
+                    </Alert>
+                  );
+                }
+              })
+            : ""}
+
           <TextField
             label="password"
             variant="outlined"
@@ -104,6 +151,18 @@ const AddAdminComponent = () => {
             value={newAdmin.password}
             onChange={handleChange}
           />
+
+          {errorList
+            ? errorList.map((error: any, index: any) => {
+                if (error.path[0] === "password") {
+                  return (
+                    <Alert key={index} severity="error">
+                      "Invalid Password"
+                    </Alert>
+                  );
+                }
+              })
+            : ""}
 
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Role</InputLabel>
@@ -125,8 +184,30 @@ const AddAdminComponent = () => {
                   );
                 })}
             </Select>
+            
           </FormControl>
-          {hasError?  <Alert severity="error">{hasError?errorStatus.message:''}</Alert>:''}
+          {errorList
+              ? errorList.map((error: any, index: any) => {
+                  if (error.path[0] === "role") {
+                    return (
+                      <Alert
+                        key={index}
+                        severity="error"
+                        sx={{ marginBottom: "15px" }}
+                      >
+                        {error.message}
+                      </Alert>
+                    );
+                  }
+                })
+              : ""}
+          {hasError ? (
+            <Alert severity="error">
+              {hasError ? errorStatus.message : ""}
+            </Alert>
+          ) : (
+            ""
+          )}
 
           <Button variant="contained" color="success" type="submit">
             Add
