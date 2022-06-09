@@ -10,10 +10,13 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 
+
 import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const SideNavbar = () => {
   const location = useLocation();
+  const [userInf,setUserInf]:any=useState()
 
   const getActiveClass = (path: string) => {
     return location.pathname.includes(path) ? "active" : "";
@@ -22,7 +25,16 @@ const SideNavbar = () => {
 
     return location.pathname === path ? "activeLink" : "";
   };
+  useEffect(()=>{
+    const data= JSON.parse(`${localStorage.getItem("userInf")}`)  
 
+    
+    setUserInf(()=> (data) )
+     
+      
+  },[])
+
+  
   return (
     <>
       <Box sx={{ backgroundColor: "#111827", height: "100vh" }}>
@@ -43,7 +55,7 @@ const SideNavbar = () => {
               sx={{ width: "100px", height: "100px" }}
             />
             <Typography variant="h5" mt={2} component="h5" color="#fff">
-              User Name
+           {userInf?.firstName}
             </Typography>
           </Box>
         </Box>

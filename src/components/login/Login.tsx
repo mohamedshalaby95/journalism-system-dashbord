@@ -6,16 +6,18 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Joi from "joi";
 
 import { loginAdmin } from "../../redux/actions/loginAdmin";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [login, setLogin] = useState({ email: "", password: "" });
   const [errorList, setErrorList] = useState([]);
   const dispatch: any = useDispatch();
+  const navigate=useNavigate()
 
   function validateLoginForm(login: any) {
     const schema = Joi.object({
@@ -42,11 +44,22 @@ const Login = () => {
         setErrorList(validationLoginFormResult.error.details);
       } else {
         dispatch(loginAdmin(login));
+     
       }
-      // navigate("/users");
     },
     [dispatch, login]
-  );
+    );
+    useEffect(()=>{
+      if(hasError){
+        setLogin((old:any)=> ({email:old.email,password:old.passwoed=""}) )
+      }
+      
+    },[setLogin,hasError])
+    if(!hasError){
+       navigate("");
+      
+  }
+  
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,9 +111,10 @@ const Login = () => {
         />
         {hasError ? (
           <Alert severity="error">{hasError ? errorStatus.message : ""}</Alert>
+        
         ) : (
           ""
-        )}
+        ) }
 
         {errorList
           ? errorList.map((error: any, index: any) => {
