@@ -1,40 +1,77 @@
 import * as classes from "./SideNavbar.module.css";
 import { ExpandMore } from "@mui/icons-material";
+import styled from "@emotion/styled";
+import axio from 'axios'
+
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Avatar,
+  Button,
   Divider,
+  Fab,
+  InputLabel,
   Typography,
 } from "@mui/material";
 import Box from "@mui/material/Box";
-
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
 
+const Input = styled("input")({
+  display: "none",
+});
 const SideNavbar = () => {
   const location = useLocation();
-  const [userInf,setUserInf]:any=useState()
+  const [userInf, setUserInf]: any = useState();
 
   const getActiveClass = (path: string) => {
     return location.pathname.includes(path) ? "active" : "";
   };
   const getNavLinkClass = (path: string) => {
-
     return location.pathname === path ? "activeLink" : "";
   };
-  useEffect(()=>{
-    const data= JSON.parse(`${localStorage.getItem("userInf")}`)  
+  useEffect(() => {
+    const data = JSON.parse(`${localStorage.getItem("userInf")}`);
 
-    
-    setUserInf(()=> (data) )
+    setUserInf(() => data);
+  }, []);
+
+  const uploadImage=(files:any)=>{
+    const formData=new FormData()
+    formData.append('file',files[0])
+    formData.append('upload_preset', 'tl55trty')
+  
+    axios.post('https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload',formData).then((res)=>{
      
+      const config={
+        headers:{
+         'Content-Type':'application/json',
+         Authorization:`Bearer ${userInf.token}`
+        }
+      }
+      axios.patch(`${process.env.REACT_APP_BACKEND}/admin`,{image:res.data.secure_url},config).then(res=>{
+    
+       
+       localStorage.setItem("userInf", JSON.stringify(res.data));
+        setUserInf(() => res.data);
+        
+      }).catch((err)=>{
+        alert('some thing go wrong')
+        
+      })
       
-  },[])
+    }).catch((err)=>{
+       alert('some thing go wrong')
+      
+    })
 
   
+  }
+
   return (
     <>
       <Box sx={{ backgroundColor: "#111827", height: "100vh" }}>
@@ -49,13 +86,44 @@ const SideNavbar = () => {
           }}
         >
           <Box>
-            <Avatar
-              alt="User Name"
-              src="https://mui.com/static/images/avatar/1.jpg"
-              sx={{ width: "100px", height: "100px" }}
-            />
-            <Typography variant="h5" mt={2} component="h5" color="#fff">
-           {userInf?.firstName}
+            <Box sx={{}}>
+              <Avatar
+                alt="User Name"
+               
+               src={userInf?userInf?.image:"https://mui.com/static/images/avatar/1.jpg"}
+                sx={{ width: "100px", height: "100px" }}
+              />
+              <label htmlFor="contained-button-file">
+                <Input
+                  accept="image/*"
+                  id="contained-button-file"
+                  multiple
+                  type="file"
+                  name="file"
+                  onChange={(event)=> uploadImage(event.target.files)}
+                />
+                <CameraAltIcon
+                  sx={{
+                    position: "absolute",
+                    left: "45%",
+                    color: "white",
+                    marginTop: "5px",
+                    cursor: "pointer",
+                  }}
+                />
+                {/* <Button variant="contained" component="span" >
+            Upload Image
+          </Button> */}
+              </label>
+            </Box>
+            <Typography
+              sx={{ paddingTop: "8px" }}
+              variant="h5"
+              mt={2}
+              component="h5"
+              color="#fff"
+            >
+              {userInf?.firstName}
             </Typography>
           </Box>
         </Box>
@@ -144,9 +212,9 @@ const SideNavbar = () => {
           <Accordion
             sx={{
               marginBottom: "20px",
-              '&:hover': {
+              "&:hover": {
                 background: "#ffffff14",
-             },
+              },
               "&:before": {
                 display: "none",
               },
