@@ -3,9 +3,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Input, Stack } from "@mui/material";
+import { Alert, Input, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategory } from "../../redux/actions/CategoryActions";
+import Joi from "joi";
+import validateCategoryForm from "../../validation/category/categoryValidation";
 
 const style = {
   position: "absolute" as "absolute",
@@ -21,18 +23,26 @@ type propType = { state: boolean };
 export default function AddCategoryPopup(props: propType) {
   const [open, setOpen] = React.useState(props.state);
   const [inputValue, setInputValue] = React.useState("");
+  const [errorList, setErrorList] = React.useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch: any = useDispatch();
   const { success } = useSelector((state: any) => state.status);
+
+  
+
   const addHandler = () => {
-    dispatch(addCategory(inputValue));
-    // console.log(success)
-    // if (success) {
-    //   // alert()
-    // }
-    handleClose();
-    setInputValue("")
+    let validateCategoryFormResult: any = validateCategoryForm({
+      category: inputValue,
+    });
+    if (validateCategoryFormResult.error) {
+      setErrorList(validateCategoryFormResult.error.details);
+    } else {
+      dispatch(addCategory(inputValue));
+      handleClose();
+      setInputValue("");
+      setErrorList([]);
+    }
   };
   const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -63,6 +73,15 @@ export default function AddCategoryPopup(props: propType) {
               value={inputValue}
               onChange={inputHandler}
             />
+            {errorList
+              ? errorList.map((error: any, index: any) => {
+                  return (
+                    <Alert key={index} severity="error">
+                      {error.message}
+                    </Alert>
+                  );
+                })
+              : ""}
             <Button variant="contained" onClick={addHandler}>
               Add
             </Button>

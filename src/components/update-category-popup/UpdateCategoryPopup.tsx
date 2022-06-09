@@ -2,10 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { Input, Stack, Typography } from "@mui/material";
+import { Alert, Input, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Icategory } from "../../types/category";
 import { UpdateCategory } from "../../redux/actions/CategoryActions";
+import validateCategoryForm from "../../validation/category/categoryValidation";
 
 const style = {
   position: "absolute" as "absolute",
@@ -19,6 +20,7 @@ const style = {
 
 export default function UpdateCategoryPopus({ category }: any) {
   const [open, setOpen] = React.useState(false);
+  const [errorList, setErrorList] = React.useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState(category.title);
@@ -29,8 +31,16 @@ export default function UpdateCategoryPopus({ category }: any) {
     setValue(event.target.value);
   };
   const updateHandler = () => {
-    dispatch(UpdateCategory(category, value));
+    let validateCategoryFormResult: any = validateCategoryForm({
+      category: value,
+    });
+    if (validateCategoryFormResult.error) {
+      setErrorList(validateCategoryFormResult.error.details);
+    } else {
+      dispatch(UpdateCategory(category, value));
     handleClose()
+    }
+    
   };
  
   return (
@@ -59,6 +69,15 @@ export default function UpdateCategoryPopus({ category }: any) {
               value={value}
               onChange={handleInputChange}
             />
+            {errorList
+              ? errorList.map((error: any, index: any) => {
+                  return (
+                    <Alert key={index} severity="error">
+                      {error.message}
+                    </Alert>
+                  );
+                })
+              : ""}
             <Button variant="contained" onClick={updateHandler}>
               Update
             </Button>
