@@ -33,3 +33,8 @@ export const ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY"
 export const FETCH_SUB_CATEGORY ="FETCH_SUB_CETEGORY"
 export const DELETE_SUB_CATEGORY ="DELETE_SUB_CETEGORY"
 export const UPDATE_SUB_CATEGORY ="UPDATE_SUB_CETEGORY"
+
+
+//-----------------------------------------------------------------users-----------------------------
+
+export const GET_ALL_USERS="USERS/GET_ALL_USERS"

@@ -60,12 +60,12 @@ const SideNavbar = () => {
         setUserInf(() => res.data);
         
       }).catch((err)=>{
-        alert('some thing go wrong')
+        alert('some thing go wrong '+err)
         
       })
       
     }).catch((err)=>{
-       alert('some thing go wrong')
+       alert('some thing go wrong data base'+err)
       
     })
 
