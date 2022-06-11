@@ -74,7 +74,7 @@ const SideNavbar = () => {
 
   return (
     <>
-      <Box sx={{ backgroundColor: "#111827", height: "100vh" }}>
+      <Box sx={{ backgroundColor: "#111827", minHeight: "100vh" }}>
         {/* Start Section User Image */}
         <Box
           pt={5}
