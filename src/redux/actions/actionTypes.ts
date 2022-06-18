@@ -38,3 +38,7 @@ export const UPDATE_SUB_CATEGORY ="UPDATE_SUB_CETEGORY"
 //-----------------------------------------------------------------users-----------------------------
 
 export const GET_ALL_USERS="USERS/GET_ALL_USERS"
+
+//------------------------------------------------ Post -------------------------------
+
+export const ADD_POST = "ADD_POST"
