@@ -29,7 +29,6 @@ import SubCategory from "../pages/SubCategory";
 
 import { MenuOpen } from "@mui/icons-material";
 
-
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
   const [toggleNavbar, setToggleNavbar] = useState<number>(-260);
@@ -68,84 +67,82 @@ function App() {
       <ThemeProvider theme={theme}>
         <Box className="App">
           <ToastContainer />
-          {userLogged ? (
-            <Box className={classes.default.routingComponent}>
-              <BrowserRouter>
-                <Box
-                  sx={{ left: `${toggleNavbar}px ` }}
-                  className={classes.default.sideNavbar}
-                >
-                  <SideNavbar />
-                </Box>
-
-                <Box
-                  sx={{ left: `${toggleButton}px ` }}
-                  className={classes.default.toggleButton}
-                >
-                  <IconButton aria-label="close" onClick={handelStatusButton}>
-                    {statusButton ? (
-                      <CloseIcon fontSize="large" sx={{ color: "white" }} />
-                    ) : (
-                      <MenuOpen fontSize="large" sx={{ color: "white" }} />
-                    )}
-                  </IconButton>
-                </Box>
-                <Box sx={{ position: "relative" }}>
-                  <Navbar />
-                  <Routes>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="" element={<Navigate to="/home" replace />} />
-                    <Route path="admins">
-                      <Route
-                        path=""
-                        element={
-                          <UserIsLogin>
-                            <Admins />
-                          </UserIsLogin>
-                        }
-                      />
-                      <Route
-                        path="add"
-                        element={
-                          <UserIsLogin>
-                            <AddAdmin />
-                          </UserIsLogin>
-                        }
-                      />
-                      <Route path=":id" element={<>Show Admin</>} />
-                      <Route path="edit/:id" element={<EditAdmin />} />
-                    </Route>
-                    <Route path="users" element={<Users />} />
-                    <Route path="category">
-                      <Route path="" element={<Category />} />
-                      <Route path="add" element={<>Add Category</>} />
-                      <Route path="edit/:id" element={<>Edit Category</>} />
-                    </Route>
-                    <Route path="subcategory">
-                      <Route path="" element={<SubCategory />} />
-                      <Route path="add" element={<>Add Sub Category</>} />
-                      <Route path="edit/:id" element={<>Edit Sub Category</>} />
-                    </Route>
-                    <Route path="post">
-                      <Route path="" element={<Posts />} />
-                      <Route path="pending" element={<>Pending Posts</>} />
-                      <Route path="add" element={<AddPost />} />
-                      <Route path="edit/:id" element={<EditPost />} />
-                      <Route path=":id" element={<>Post</>} />
-                    </Route>
-                    <Route path="*" element={<Navigate to="/home" replace />} />
-                  </Routes>
-                </Box>
-              </BrowserRouter>
-            </Box>
-          ) : (
+          {/* {userLogged ? ( */}
+          <Box className={classes.default.routingComponent}>
             <BrowserRouter>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="*" element={<Navigate to="/login" replace />} />
-              </Routes>
+              {/* {userLogged && ( */}
+                <>
+                  <Box
+                    sx={{ left: `${toggleNavbar}px ` }}
+                    className={classes.default.sideNavbar}
+                  >
+                    <SideNavbar />
+                  </Box>
+                  <Box
+                    sx={{ left: `${toggleButton}px ` }}
+                    className={classes.default.toggleButton}
+                  >
+                    <IconButton aria-label="close" onClick={handelStatusButton}>
+                      {statusButton ? (
+                        <CloseIcon fontSize="large" sx={{ color: "white" }} />
+                      ) : (
+                        <MenuOpen fontSize="large" sx={{ color: "white" }} />
+                      )}
+                    </IconButton>
+                  </Box>{" "}
+                </>
+              {/* )} */}
+
+              <Box sx={{ position: "relative" }}>
+                {/* {userLogged && <Navbar />} */}
+                <Navbar />
+                <Routes>
+                  <Route path="/home" element={<Home />} />
+                  <Route path="" element={<Navigate to="/home" replace />} />
+                  <Route path="admins">
+                    <Route
+                      path=""
+                      element={
+                        <UserIsLogin>
+                          <Admins />
+                        </UserIsLogin>
+                      }
+                    />
+                    <Route
+                      path="add"
+                      element={
+                        <UserIsLogin>
+                          <AddAdmin />
+                        </UserIsLogin>
+                      }
+                    />
+                    <Route path=":id" element={<>Show Admin</>} />
+                    <Route path="edit/:id" element={<EditAdmin />} />
+                  </Route>
+                  <Route path="users" element={<Users />} />
+                  <Route path="category">
+                    <Route path="" element={<Category />} />
+                    <Route path="add" element={<>Add Category</>} />
+                    <Route path="edit/:id" element={<>Edit Category</>} />
+                  </Route>
+                  <Route path="subcategory">
+                    <Route path="" element={<SubCategory />} />
+                    <Route path="add" element={<>Add Sub Category</>} />
+                    <Route path="edit/:id" element={<>Edit Sub Category</>} />
+                  </Route>
+                  <Route path="post">
+                    <Route path="" element={<Posts />} />
+                    <Route path="pending" element={<>Pending Posts</>} />
+                    <Route path="add" element={<AddPost />} />
+                    <Route path="edit/:id" element={<EditPost />} />
+                    <Route path=":id" element={<>Post</>} />
+                  </Route>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="*" element={<Navigate to="/home" replace />} />
+                </Routes>
+              </Box>
             </BrowserRouter>
-          )}
+          </Box>
         </Box>
       </ThemeProvider>
     </Provider>
