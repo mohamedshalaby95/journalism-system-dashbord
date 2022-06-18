@@ -100,7 +100,7 @@ const SideNavbar = () => {
                   multiple
                   type="file"
                   name="file"
-                  onChange={(event)=> uploadImage(event.target.files)}
+                  // onChange={(event)=> uploadImage(event.target.files)}
                 />
                 <CameraAltIcon
                   sx={{
