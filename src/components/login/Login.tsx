@@ -17,16 +17,18 @@ const Login = () => {
   const [login, setLogin] = useState({ email: "", password: "" });
   const [errorList, setErrorList] = useState([]);
   const dispatch: any = useDispatch();
-  const navigate=useNavigate()
-
- 
+  const navigate = useNavigate();
 
   const { loading, hasError, errorStatus } = useSelector(
-    (state: any) => state.status
+    (state: any) =>{ 
+     
+     return  state.status
+    }
   );
-  const {userInf}=useSelector((state:any)=> state. adminData)
-  console.log(userInf);
-  
+
+  const data = useSelector((state: any) => state.adminData);
+  console.log(data);
+
   const handleSubmit = useCallback(
     (event: React.FormEvent) => {
       event.preventDefault();
@@ -35,20 +37,21 @@ const Login = () => {
         setErrorList(validationLoginFormResult.error.details);
       } else {
         dispatch(loginAdmin(login));
-     
       }
     },
-    [dispatch, login,hasError, navigate]
-    );
+    [dispatch, login, hasError, navigate]
+  );
+
+  if (data) {
+    console.log("naviagte should");
+    navigate("/home");
+  } else {
+    console.log("not have user inf");
+  }
   
-    useEffect(()=>{
-      
-          if(userInf){
-            navigate("");
-           
-       }
-    },[userInf, navigate])
-    
+  // useEffect(()=>{
+
+  //  },[data])
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,10 +103,9 @@ const Login = () => {
         />
         {hasError ? (
           <Alert severity="error">{hasError ? errorStatus.message : ""}</Alert>
-        
         ) : (
           ""
-        ) }
+        )}
 
         {errorList
           ? errorList.map((error: any, index: any) => {
