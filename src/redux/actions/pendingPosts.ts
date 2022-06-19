@@ -2,8 +2,11 @@ import { pendingPostsApi } from './../../api/posts';
 
 
 
-import {GET_PENDING_POSTS,ACCEPT_PENDING_POST, DELETE_PENDING_POST} from './actionTypes'
-import{startLoading,showError,showSuccess} from './statusActions'
+
+import {GET_PENDING_POSTS,ACCEPT_PENDING_POST, CANCEL_PENDING_POST} from './actionTypes';
+import{startLoading,showError,showSuccess} from './statusActions';
+import { ToastContainer, toast } from "react-toastify";
+const notify = (input: string) => toast(input);
 const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
 
 const config={
@@ -12,13 +15,13 @@ const config={
    Authorization:` Bearer ${token}`
   }
 }
-
 export const getPendingPosts=()=>(dispatch:any)=>{
   dispatch(startLoading())
   pendingPostsApi.get('status/pending',config).then(res=>{
     {
         dispatch(getPendingPostSuccese(res.data))
         dispatch(showSuccess())
+       
         
       }
   })  .catch((err) => {
@@ -30,6 +33,7 @@ export const getPendingPosts=()=>(dispatch:any)=>{
           : err.message
       )
     );
+
   });
 };
 
@@ -41,6 +45,7 @@ export const  acceptPost=(id:string)=>(dispatch:any)=>{
    pendingPostsApi.get(`admin/accept/${id}`,config).then((res)=>{
      dispatch(acceptPostSuccess(res.data))
      dispatch(showSuccess())
+     notify("Post Accept Succssfuly");
    }) .catch((err) => {
     dispatch(
       showError(
@@ -50,6 +55,7 @@ export const  acceptPost=(id:string)=>(dispatch:any)=>{
           : err.message
       )
     );
+    notify("something go wrong when accept post");
   });
 
 }
@@ -57,11 +63,12 @@ export const  acceptPost=(id:string)=>(dispatch:any)=>{
 const acceptPostSuccess=(id:string)=>({type:ACCEPT_PENDING_POST,payload:id})
 
 ///-------------------------------delete pending post-----------------------------------
-export const  deletePendingPost=(id:string)=>(dispatch:any)=>{
+export const  cancelPendingPost=(id:string)=>(dispatch:any)=>{
   dispatch(startLoading()) 
-   pendingPostsApi.delete(`delete/${id}`,config).then((res)=>{
-     dispatch(deletePendingSuccess(res.data))
+   pendingPostsApi.get(`admin/cancel/${id}`,config).then((res)=>{
+     dispatch(cancelPendingSuccess(res.data))
      dispatch(showSuccess())
+     notify("Post Cancel Succssfuly");
    }) .catch((err) => {
     dispatch(
       showError(
@@ -71,9 +78,10 @@ export const  deletePendingPost=(id:string)=>(dispatch:any)=>{
           : err.message
       )
     );
+    notify("something go wrong when cancel post");
   });
 
 }
 
-const deletePendingSuccess=(id:string)=>({type:DELETE_PENDING_POST,payload:id})
+const cancelPendingSuccess=(id:string)=>({type:CANCEL_PENDING_POST,payload:id})
 

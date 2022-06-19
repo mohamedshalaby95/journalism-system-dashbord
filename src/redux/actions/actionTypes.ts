@@ -45,13 +45,13 @@ export const GET_ALL_USERS="USERS/GET_ALL_USERS"
 
  export const ACCEPT_PENDING_POST="POSTS/ACCEPT_PENDING_POST"
 
- export const DELETE_PENDING_POST="POSTS/DELETE_PENDING_POST"
+ export const CANCEL_PENDING_POST="POSTS/DELETE_PENDING_POST"
 
 
  //---------------------------get post by id------------------------------
 
  export const GET_POST="POSTS/GET_POST"
-=======
+
 //------------------------------------------------ Post -------------------------------
 
 export const ADD_POST = "ADD_POST"
