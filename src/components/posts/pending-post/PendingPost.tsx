@@ -13,8 +13,9 @@ import CheckIcon from '@mui/icons-material/Check';
 import { Link } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {acceptPost, deletePendingPost, getPendingPosts} from '../../../redux/actions/pendingPosts'
+import {acceptPost, cancelPendingPost, getPendingPosts} from '../../../redux/actions/pendingPosts'
 import CircularIndeterminate from "../../spinner/spinner";
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const PendingPost = () => {
   const [page, setPage] = useState(0);
@@ -45,9 +46,9 @@ const dispatch:any=useDispatch()
 
   },[dispatch,acceptPost])
   const handelClickDeletePost=useCallback((id:string)=>{
-    dispatch(deletePendingPost(id))
+    dispatch(cancelPendingPost(id))
   
-    },[dispatch,deletePendingPost])
+    },[dispatch,cancelPendingPost])
 
  
 
@@ -89,7 +90,7 @@ const dispatch:any=useDispatch()
                     
                     </IconButton>
                     <IconButton onClick={()=>handelClickDeletePost(pendingPosts._id)} aria-label="delete" size="large">
-                      <Delete color="error" />
+                      <CancelIcon color="error" />
                     </IconButton>
                     
                   </TableCell>

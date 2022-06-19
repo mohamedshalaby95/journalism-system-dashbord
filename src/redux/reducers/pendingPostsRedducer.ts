@@ -1,5 +1,5 @@
 import { IreducerActionsProps } from "../../types/reducerPropsAction";
-import { ACCEPT_PENDING_POST, DELETE_PENDING_POST, GET_PENDING_POSTS } from "../actions/actionTypes";
+import { ACCEPT_PENDING_POST, CANCEL_PENDING_POST, GET_PENDING_POSTS } from "../actions/actionTypes";
 
 export const pendingPostsReducer = (
   state = [],
@@ -12,7 +12,7 @@ export const pendingPostsReducer = (
       case ACCEPT_PENDING_POST:
         return state?.filter((el:any)=> el._id!==payload);
 
-        case  DELETE_PENDING_POST:
+        case  CANCEL_PENDING_POST:
           return state?.filter((el:any)=> el._id!==payload);
          
       
