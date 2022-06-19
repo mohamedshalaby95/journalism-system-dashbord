@@ -7,7 +7,7 @@ import userApi from '../../api/usersApi'
 export const getUser=()=>(dispatch:any)=>{
  
   const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
-  console.log(token)
+
   const config={
     headers:{
      'Content-Type':'application/json',

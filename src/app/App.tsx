@@ -28,6 +28,8 @@ import Home from "../pages/home/Home";
 import SubCategory from "../pages/SubCategory";
 
 import { MenuOpen } from "@mui/icons-material";
+import PendingPost from "../components/posts/pending-post/PendingPost";
+import PostDetails from "../components/posts/post details/PostDetails";
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
@@ -132,10 +134,10 @@ function App() {
                   </Route>
                   <Route path="post">
                     <Route path="" element={<Posts />} />
-                    <Route path="pending" element={<>Pending Posts</>} />
+                    <Route path="pending" element={<PendingPost/>} />
                     <Route path="add" element={<AddPost />} />
                     <Route path="edit/:id" element={<EditPost />} />
-                    <Route path=":id" element={<>Post</>} />
+                    <Route path=":id" element={<PostDetails />} />
                   </Route>
                   <Route path="/login" element={<Login />} />
                   <Route path="*" element={<Navigate to="/home" replace />} />
