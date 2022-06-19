@@ -39,6 +39,7 @@ export const UPDATE_SUB_CATEGORY ="UPDATE_SUB_CETEGORY"
 
 export const GET_ALL_USERS="USERS/GET_ALL_USERS"
 
+
 //------------------------------------posts--------------------------------------------------------------
  export const GET_PENDING_POSTS="POSTS/GET_PENDING_POSTS"
 
@@ -50,3 +51,8 @@ export const GET_ALL_USERS="USERS/GET_ALL_USERS"
  //---------------------------get post by id------------------------------
 
  export const GET_POST="POSTS/GET_POST"
+=======
+//------------------------------------------------ Post -------------------------------
+
+export const ADD_POST = "ADD_POST"
+
