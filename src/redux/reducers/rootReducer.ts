@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   users:userReducer,
 
   pendingPosts:pendingPostsReducer,
-  postById:getPostReducer
+  postById:getPostReducer,
 
   post: postReducer
 
