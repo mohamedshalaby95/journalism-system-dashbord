@@ -26,7 +26,7 @@ const PostDetails = () => {
     const matches = useMediaQuery('(min-width:600px)');
   const { id } = useParams();
   const dispatch: any = useDispatch();
-  const post = useSelector((state: any) => state?.post);
+  const post = useSelector((state: any) => state?.postById);
   const { loading } = useSelector((state: any) => state?.status);
 
   const navigate=useNavigate()
