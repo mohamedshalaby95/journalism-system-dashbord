@@ -9,6 +9,7 @@
   transition-duration: 1s;
   overflow-y: auto;
   z-index: 100;
+  overflow-y: auto;
 }
 
 .toggleButton {

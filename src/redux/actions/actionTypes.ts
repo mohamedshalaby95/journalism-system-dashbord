@@ -33,7 +33,32 @@ export const ADD_SUB_CATEGORY = "ADD_SUB_CATEGORY"
 export const FETCH_SUB_CATEGORY ="FETCH_SUB_CETEGORY"
 export const DELETE_SUB_CATEGORY ="DELETE_SUB_CETEGORY"
 export const UPDATE_SUB_CATEGORY ="UPDATE_SUB_CETEGORY"
+
 // ____________________action______________________
 export const FETCH_POSTS="FETCH_POSTS" 
 export const DELETE_POST="DELETE_POST"
+
+
+
+//-----------------------------------------------------------------users-----------------------------
+
+export const GET_ALL_USERS="USERS/GET_ALL_USERS"
+
+
+//------------------------------------posts--------------------------------------------------------------
+ export const GET_PENDING_POSTS="POSTS/GET_PENDING_POSTS"
+
+ export const ACCEPT_PENDING_POST="POSTS/ACCEPT_PENDING_POST"
+
+ export const CANCEL_PENDING_POST="POSTS/DELETE_PENDING_POST"
+
+
+ //---------------------------get post by id------------------------------
+
+ export const GET_POST="POSTS/GET_POST"
+
+//------------------------------------------------ Post -------------------------------
+
+export const ADD_POST = "ADD_POST"
+
 

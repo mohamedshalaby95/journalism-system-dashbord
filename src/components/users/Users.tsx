@@ -7,10 +7,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import CircularIndeterminate from '../spinner/spinner'
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {getUser} from '../../redux/actions/usersAction'
 
 const Users = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const dispatch:any=useDispatch()
+  const users=useSelector((state:any)=> state?.users)
+  console.log(users)
+  const {loading,hasError}=useSelector((state:any)=> state.status)
+
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -23,39 +33,15 @@ const Users = () => {
     setPage(0);
   };
 
-  const rows = [
-    {
-      firstName: "Menna",
-      lastName: "Omina",
-      email: "Shefa@website.com",
+ useEffect(()=>{
+  dispatch(getUser())
+ },[])
 
-      id: 1,
-    },
-    {
-      firstName: "Menna",
-      lastName: "Omina",
-      email: "Shefa@website.com",
-
-      id: 2,
-    },
-    {
-      firstName: "Menna",
-      lastName: "Omina",
-      email: "Shefa@website.com",
-
-      id: 3,
-    },
-    {
-      firstName: "Menna",
-      lastName: "Omina",
-      email: "Shefa@website.com",
-
-      id: 4,
-    },
-  ];
 
   return (
-    <Paper sx={{ width: "80%", overflow: "hidden", margin: "20px auto" }}>
+
+   <>
+   {loading?<CircularIndeterminate/> : <Paper sx={{ width: "80%", overflow: "hidden", margin: "20px auto" }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -67,11 +53,11 @@ const Users = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+            {users
+              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row:any) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
                     <TableCell>{row.firstName}</TableCell>
                     <TableCell>{row.lastName}</TableCell>
                     <TableCell>{row.email}</TableCell>
@@ -84,13 +70,19 @@ const Users = () => {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={users.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-    </Paper>
+    </Paper>}
+   
+   </>
+
+
+
+  
   );
 };
 

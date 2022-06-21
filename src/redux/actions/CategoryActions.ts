@@ -100,13 +100,13 @@ export function updateCategorySuccess(category: Icategory) {
   };
 }
 
-export const UpdateCategory = (category: Icategory, title: string) => {
+export const UpdateCategory = (category: Icategory, title: string,description:string,image:string) => {
   return (dispatch: any) => {
     dispatch(startLoading());
     categoryApi
-      .put(`${category._id}`, { title })
+      .put(`${category._id}`, { title,description,image })
       .then((res) => {
-        dispatch(updateCategorySuccess({ ...res.data, title }));
+        dispatch(updateCategorySuccess({ ...res.data, title,description,image }));
         dispatch(showSuccess());
         notify("category Updated suuccefully");
       })
@@ -123,11 +123,11 @@ export function addCategorySuccess(category: Icategory) {
     payload: category,
   };
 }
-export const addCategory = (title: string) => {
+export const addCategory = (title: string,description:string,image:string) => {
   return (dispatch: any) => {
     dispatch(startLoading());
     categoryApi
-      .post("", { title })
+      .post("", { title,description,image })
       .then((res) => {
         dispatch(addCategorySuccess(res.data));
         dispatch(showSuccess());

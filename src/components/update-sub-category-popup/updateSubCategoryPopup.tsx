@@ -12,12 +12,14 @@ import {
   FormControl,
   TextField,
   SelectChangeEvent,
+  Alert,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Icategory } from "../../types/category";
 import { UpdateCategory } from "../../redux/actions/CategoryActions";
 import { FetchCategories } from "../../redux/actions/CategoryActions";
 import { updateSubCategory } from "../../redux/actions/subCategoryAction";
+import validateSubCategoryForm from "../../validation/subCategory/subCategoryValidation";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -29,6 +31,7 @@ const style = {
 };
 
 export default function UpdateSubCategoryPopus({ subCategory }: any) {
+  const [errorList, setErrorList] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -43,28 +46,24 @@ export default function UpdateSubCategoryPopus({ subCategory }: any) {
   const categories = useSelector((state: any) => state.category.data);
   React.useEffect(() => {
     dispatch(FetchCategories());
-  
-  
 
-    
     //   console.log("category parent",categories.find((element: any) => element._id !== subCategory._id))
   }, []);
   React.useEffect(() => {
-    if(categories.length)
-    {
-        setSubCategoryParent(
-          
-              categories.find((element: any) => element._id === subCategory.parent).title
-          );
-        //   console.log("test",categories.find((element: any) =>{ 
-        //     console.log(element._id)
-        //     console.log(subCategory._id)
-        // })
-        // console.log("cate",categories)
-         
-        //   )
+    if (categories.length) {
+      setSubCategoryParent(
+        categories.find((element: any) => element._id === subCategory.parent)
+          .title
+      );
+      //   console.log("test",categories.find((element: any) =>{
+      //     console.log(element._id)
+      //     console.log(subCategory._id)
+      // })
+      // console.log("cate",categories)
+
+      //   )
     }
-},[categories])
+  }, [categories]);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSubCategoryTitle(event.target.value);
   };
@@ -72,14 +71,23 @@ export default function UpdateSubCategoryPopus({ subCategory }: any) {
     setSubCategoryParent(event.target.value);
   };
   const updateHandler = () => {
-    dispatch(
-      updateSubCategory(subCategory._id, {
-        title: categorySubTitle,
-        parent: categorySubParent,
-      })
-    );
+    let validateSubCategoryFormResult: any = validateSubCategoryForm({
+      category: categorySubParent,
+      subcategory: categorySubTitle,
+    });
+    if (validateSubCategoryFormResult.error) {
+      setErrorList(validateSubCategoryFormResult.error.details);
+    } else {
+      dispatch(
+        updateSubCategory(subCategory._id, {
+          title: categorySubTitle,
+          parent: categorySubParent,
+        })
+      );
 
-    handleClose();
+      handleClose();
+      setErrorList([]);
+    }
   };
 
   return (
@@ -136,8 +144,18 @@ export default function UpdateSubCategoryPopus({ subCategory }: any) {
               variant="outlined"
               onChange={handleInputChange}
               value={categorySubTitle}
+              name={subCategory}
             />
 
+            {errorList
+              ? errorList.map((error: any, index: any) => {
+                  return (
+                    <Alert key={index} severity="error">
+                      {error.message}
+                    </Alert>
+                  );
+                })
+              : ""}
             <Button variant="contained" onClick={updateHandler}>
               Update
             </Button>

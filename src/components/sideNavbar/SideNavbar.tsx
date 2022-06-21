@@ -1,7 +1,9 @@
 import * as classes from "./SideNavbar.module.css";
 import { ExpandMore } from "@mui/icons-material";
 import styled from "@emotion/styled";
+
 import axio from "axios";
+
 
 import {
   Accordion,
@@ -44,7 +46,9 @@ const SideNavbar = () => {
     const formData = new FormData();
     formData.append("file", files[0]);
     formData.append("upload_preset", "tl55trty");
+
     console.log("from sidebar");
+
     axios
       .post("https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload", formData)
       .then((res) => {
@@ -54,6 +58,9 @@ const SideNavbar = () => {
             Authorization: `Bearer ${userInf.token}`,
           },
         };
+
+
+        console.log(res.data.secure_url);
         axios
           .patch(
             `${process.env.REACT_APP_BACKEND}/admin`,
@@ -61,17 +68,18 @@ const SideNavbar = () => {
             config
           )
           .then((res) => {
+            console.log(res.data);
+
             localStorage.setItem("userInf", JSON.stringify(res.data));
             setUserInf(() => res.data);
           })
           .catch((err) => {
-            alert("some thing go wrong");
+            alert("some thing go wrong  " + err);
           });
       })
       .catch((err) => {
-        console.log("from sidebar");
+        alert("some thing go wrong data base" + err);
 
-        alert("some thing go wrong");
       });
   };
 
@@ -106,7 +114,11 @@ const SideNavbar = () => {
                   multiple
                   type="file"
                   name="file"
+
+
                   onChange={(event) => uploadImage(event.target.files)}
+
+
                 />
                 <CameraAltIcon
                   sx={{
@@ -117,9 +129,6 @@ const SideNavbar = () => {
                     cursor: "pointer",
                   }}
                 />
-                {/* <Button variant="contained" component="span" >
-            Upload Image
-          </Button> */}
               </label>
             </Box>
             <Typography
