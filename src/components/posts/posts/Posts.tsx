@@ -28,27 +28,27 @@ const Posts = () => {
 
   const rows = [
     {
-      title: "Menna",
-      category: "Omina",
-      subCategory: "Shefa@website.com",
+      title: "Title",
+      category: "Category",
+      subCategory: "website@website.com",
       id: 1,
     },
     {
-      title: "Menna",
-      category: "Omina",
-      subCategory: "Shefa@website.com",
+      title: "Title",
+      category: "Category",
+      subCategory: "website@website.com",
       id: 2,
     },
     {
-      title: "Menna",
-      category: "Omina",
-      subCategory: "Shefa@website.com",
+      title: "Title",
+      category: "Category",
+      subCategory: "website@website.com",
       id: 3,
     },
     {
-      title: "Menna",
-      category: "Omina",
-      subCategory: "Shefa@website.com",
+      title: "Title",
+      category: "Category",
+      subCategory: "website@website.com",
       id: 4,
     },
   ];
