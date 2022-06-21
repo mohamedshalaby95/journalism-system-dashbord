@@ -34,6 +34,11 @@ export const FETCH_SUB_CATEGORY ="FETCH_SUB_CETEGORY"
 export const DELETE_SUB_CATEGORY ="DELETE_SUB_CETEGORY"
 export const UPDATE_SUB_CATEGORY ="UPDATE_SUB_CETEGORY"
 
+// ____________________action______________________
+export const FETCH_POSTS="FETCH_POSTS" 
+export const DELETE_POST="DELETE_POST"
+
+
 
 //-----------------------------------------------------------------users-----------------------------
 
@@ -55,4 +60,5 @@ export const GET_ALL_USERS="USERS/GET_ALL_USERS"
 //------------------------------------------------ Post -------------------------------
 
 export const ADD_POST = "ADD_POST"
+
 

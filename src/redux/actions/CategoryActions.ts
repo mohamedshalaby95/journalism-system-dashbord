@@ -44,6 +44,7 @@ export const FetchCategories = () => {
     categoryApi
       .get("")
       .then((res) => {
+        console.log("fetched categories",res.data)
         return res.data;
       })
       .then((filterd) => dispatch(fetchCategorySuccess(filterd)))

@@ -49,10 +49,10 @@ function App() {
     if (loggedInUser) {
       setUserLogged(true);
     }
-    else{
-      setUserLogged(false);
-    }
-  });
+
+  }, []);
+
+
   function UserIsLogin({ children }: any) {
     if (localStorage.getItem("userInf")) {
      

@@ -57,7 +57,6 @@ export default function CategoryTable() {
     // setSw((old)=>!old)
   };
 
-
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
       <TableContainer sx={{ maxHeight: 440 }}>
