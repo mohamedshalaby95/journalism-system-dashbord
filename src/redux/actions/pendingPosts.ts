@@ -7,7 +7,9 @@ import {GET_PENDING_POSTS,ACCEPT_PENDING_POST, CANCEL_PENDING_POST} from './acti
 import{startLoading,showError,showSuccess} from './statusActions';
 import { ToastContainer, toast } from "react-toastify";
 const notify = (input: string) => toast(input);
-const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
+
+export const getPendingPosts=()=>(dispatch:any)=>{
+  const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
 
 const config={
   headers:{
@@ -15,7 +17,6 @@ const config={
    Authorization:` Bearer ${token}`
   }
 }
-export const getPendingPosts=()=>(dispatch:any)=>{
   dispatch(startLoading())
   pendingPostsApi.get('status/pending',config).then(res=>{
     {
@@ -41,6 +42,14 @@ const getPendingPostSuccese=(data:any)=>({type:GET_PENDING_POSTS,payload:data})
 
 // ----------------------------accept post---------------------
 export const  acceptPost=(id:string)=>(dispatch:any)=>{
+  const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
+
+const config={
+  headers:{
+   'Content-Type':'application/json',
+   Authorization:` Bearer ${token}`
+  }
+}
   dispatch(startLoading()) 
    pendingPostsApi.get(`admin/accept/${id}`,config).then((res)=>{
      dispatch(acceptPostSuccess(res.data))
@@ -64,6 +73,14 @@ const acceptPostSuccess=(id:string)=>({type:ACCEPT_PENDING_POST,payload:id})
 
 ///-------------------------------delete pending post-----------------------------------
 export const  cancelPendingPost=(id:string)=>(dispatch:any)=>{
+  const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
+
+const config={
+  headers:{
+   'Content-Type':'application/json',
+   Authorization:` Bearer ${token}`
+  }
+}
   dispatch(startLoading()) 
    pendingPostsApi.get(`admin/cancel/${id}`,config).then((res)=>{
      dispatch(cancelPendingSuccess(res.data))
