@@ -1,7 +1,7 @@
 import * as classes from "./SideNavbar.module.css";
 import { ExpandMore } from "@mui/icons-material";
 import styled from "@emotion/styled";
-import axio from 'axios'
+import axio from "axios";
 
 import {
   Accordion,
@@ -40,41 +40,44 @@ const SideNavbar = () => {
     setUserInf(() => data);
   }, []);
 
-  const uploadImage=(files:any)=>{
-    const formData=new FormData()
-    formData.append('file',files[0])
-    formData.append('upload_preset', 'tl55trty')
-  
-    axios.post('https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload',formData).then((res)=>{
-     
-      const config={
-        headers:{
-         'Content-Type':'application/json',
-         Authorization:`Bearer ${userInf.token}`
-        }
-      }
-      axios.patch(`${process.env.REACT_APP_BACKEND}/admin`,{image:res.data.secure_url},config).then(res=>{
-    
-       
-       localStorage.setItem("userInf", JSON.stringify(res.data));
-        setUserInf(() => res.data);
-        
-      }).catch((err)=>{
-        alert('some thing go wrong')
-        
+  const uploadImage = (files: any) => {
+    const formData = new FormData();
+    formData.append("file", files[0]);
+    formData.append("upload_preset", "tl55trty");
+    console.log("from sidebar");
+    axios
+      .post("https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload", formData)
+      .then((res) => {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInf.token}`,
+          },
+        };
+        axios
+          .patch(
+            `${process.env.REACT_APP_BACKEND}/admin`,
+            { image: res.data.secure_url },
+            config
+          )
+          .then((res) => {
+            localStorage.setItem("userInf", JSON.stringify(res.data));
+            setUserInf(() => res.data);
+          })
+          .catch((err) => {
+            alert("some thing go wrong");
+          });
       })
-      
-    }).catch((err)=>{
-       alert('some thing go wrong')
-      
-    })
+      .catch((err) => {
+        console.log("from sidebar");
 
-  
-  }
+        alert("some thing go wrong");
+      });
+  };
 
   return (
     <>
-      <Box sx={{ backgroundColor: "#111827", height: "100vh" }}>
+      <Box sx={{ backgroundColor: "#111827", minHeight: "100vh" }}>
         {/* Start Section User Image */}
         <Box
           pt={5}
@@ -89,8 +92,11 @@ const SideNavbar = () => {
             <Box sx={{}}>
               <Avatar
                 alt="User Name"
-               
-               src={userInf?userInf?.image:"https://mui.com/static/images/avatar/1.jpg"}
+                src={
+                  userInf
+                    ? userInf?.image
+                    : "https://mui.com/static/images/avatar/1.jpg"
+                }
                 sx={{ width: "100px", height: "100px" }}
               />
               <label htmlFor="contained-button-file">
@@ -100,7 +106,7 @@ const SideNavbar = () => {
                   multiple
                   type="file"
                   name="file"
-                  onChange={(event)=> uploadImage(event.target.files)}
+                  onChange={(event) => uploadImage(event.target.files)}
                 />
                 <CameraAltIcon
                   sx={{

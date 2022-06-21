@@ -4,6 +4,7 @@ import statusReducer from "./statusReducer";
 import { adminLoginReducer } from "./loginAdminReducer";
 import adminReducer from "./adminReducer";
 import subCategoryReducer from "./SubCategoryReducer";
+import postReducer from "./postReducer";
 
 const rootReducer = combineReducers({
   status: statusReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   adminData: adminLoginReducer,
   admins: adminReducer,
   subCategory: subCategoryReducer,
+  posts: postReducer,
 });
 export type RootState = ReturnType<any>;
 

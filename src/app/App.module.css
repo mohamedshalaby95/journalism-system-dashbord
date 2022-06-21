@@ -7,6 +7,7 @@
   width: 260px;
   border-right: 1px solid #2e344e;
   transition-duration: 1s;
+  overflow-y: auto;
   z-index: 100;
 }
 
