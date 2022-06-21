@@ -2,6 +2,9 @@ import * as classes from "./SideNavbar.module.css";
 import { ExpandMore } from "@mui/icons-material";
 import styled from "@emotion/styled";
 
+import axio from "axios";
+
+
 import {
   Accordion,
   AccordionDetails,
@@ -44,6 +47,8 @@ const SideNavbar = () => {
     formData.append("file", files[0]);
     formData.append("upload_preset", "tl55trty");
 
+    console.log("from sidebar");
+
     axios
       .post("https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload", formData)
       .then((res) => {
@@ -53,6 +58,7 @@ const SideNavbar = () => {
             Authorization: `Bearer ${userInf.token}`,
           },
         };
+
 
         console.log(res.data.secure_url);
         axios
@@ -73,6 +79,7 @@ const SideNavbar = () => {
       })
       .catch((err) => {
         alert("some thing go wrong data base" + err);
+
       });
   };
 
@@ -108,7 +115,9 @@ const SideNavbar = () => {
                   type="file"
                   name="file"
 
+
                   onChange={(event) => uploadImage(event.target.files)}
+
 
                 />
                 <CameraAltIcon
