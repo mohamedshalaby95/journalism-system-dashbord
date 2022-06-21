@@ -1,4 +1,4 @@
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "../redux/store";
 import * as classes from "./App.module.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
@@ -42,16 +42,26 @@ function App() {
   }, [setStatusButton]);
 
   const [userLogged, setUserLogged] = useState<boolean>(false);
+
+
   useEffect(() => {
     const loggedInUser = localStorage.getItem("userInf");
     if (loggedInUser) {
       setUserLogged(true);
     }
-  }, []);
+    else{
+      setUserLogged(false);
+    }
+  });
   function UserIsLogin({ children }: any) {
     if (localStorage.getItem("userInf")) {
+     
+      // setUserLogged((old)=> true);
+      console.log("here now")
+    
       return children;
     } else {
+      console.log("here now")
       return <Navigate to="/login" />;
     }
   }
@@ -69,10 +79,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <Box className="App">
           <ToastContainer />
-          {/* {userLogged ? ( */}
+           {/* {userLogged ? ( */}
+    
           <Box className={classes.default.routingComponent}>
             <BrowserRouter>
-              {/* {userLogged && ( */}
+              {userLogged ? (
+      
                 <>
                   <Box
                     sx={{ left: `${toggleNavbar}px ` }}
@@ -93,13 +105,16 @@ function App() {
                     </IconButton>
                   </Box>{" "}
                 </>
-              {/* )} */}
+               ):""} 
 
               <Box sx={{ position: "relative" }}>
-                {/* {userLogged && <Navbar />} */}
-                <Navbar />
+                  {/* {userLogged && <Navbar />}*/}
+                {userLogged ? <Navbar />:''} 
+              
                 <Routes>
-                  <Route path="/home" element={<Home />} />
+           
+
+             { UserIsLogin && (<><Route path="/home" element={<Home />} />
                   <Route path="" element={<Navigate to="/home" replace />} />
                   <Route path="admins">
                     <Route
@@ -119,32 +134,39 @@ function App() {
                       }
                     />
                     <Route path=":id" element={<>Show Admin</>} />
-                    <Route path="edit/:id" element={<EditAdmin />} />
+                    <Route path="edit/:id" element={<UserIsLogin><EditAdmin /></UserIsLogin>} />
                   </Route>
-                  <Route path="users" element={<Users />} />
+                  <Route path="users" element={<UserIsLogin><Users /></UserIsLogin>} />
                   <Route path="category">
-                    <Route path="" element={<Category />} />
-                    <Route path="add" element={<>Add Category</>} />
-                    <Route path="edit/:id" element={<>Edit Category</>} />
+                    <Route path="" element={<UserIsLogin><Category /></UserIsLogin>} />
+                    
                   </Route>
                   <Route path="subcategory">
-                    <Route path="" element={<SubCategory />} />
-                    <Route path="add" element={<>Add Sub Category</>} />
-                    <Route path="edit/:id" element={<>Edit Sub Category</>} />
+                    <Route path="" element={<UserIsLogin><SubCategory /></UserIsLogin>} />
+                 
                   </Route>
                   <Route path="post">
-                    <Route path="" element={<Posts />} />
-                    <Route path="pending" element={<PendingPost/>} />
-                    <Route path="add" element={<AddPost />} />
-                    <Route path="edit/:id" element={<EditPost />} />
-                    <Route path=":id" element={<PostDetails />} />
+                    <Route path="" element={<UserIsLogin><Posts /></UserIsLogin>} />
+                    <Route path="pending" element={<UserIsLogin><PendingPost/></UserIsLogin>} />
+                    <Route path="add" element={<UserIsLogin><AddPost /></UserIsLogin>} />
+                    <Route path="edit/:id" element={<UserIsLogin><EditPost /></UserIsLogin>} />
+                    <Route path=":id" element={<UserIsLogin><PostDetails /></UserIsLogin>} />
                   </Route>
-                  <Route path="/login" element={<Login />} />
                   <Route path="*" element={<Navigate to="/home" replace />} />
+                  <Route path="/login" element={<Login />} />
+                  </> 
+                  )}  
+                 
+                {/* </Route> */}
                 </Routes>
+                 
               </Box>
             </BrowserRouter>
           </Box>
+              {/* </UserIsLogin> */}
+                   {/* </Route>  */}
+             
+          {/* // ):""} */}
         </Box>
       </ThemeProvider>
     </Provider>

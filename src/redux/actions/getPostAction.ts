@@ -1,14 +1,15 @@
 import { pendingPostsApi } from '../../api/posts'
 import {GET_POST} from './actionTypes'
 import {showSuccess,showError,startLoading} from './statusActions'
-const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
+
+export const  getPost=(id:any)=>(dispatch:any)=>{
+  const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
 const config={
     headers:{
      'Content-Type':'application/json',
      Authorization:` Bearer ${token}`
     }
   }
-export const  getPost=(id:any)=>(dispatch:any)=>{
        dispatch(startLoading())
        pendingPostsApi.get(`/get_one/${id}`,config).then((res)=>{
 
