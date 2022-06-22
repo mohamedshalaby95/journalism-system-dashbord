@@ -20,8 +20,9 @@ export const fetchPosts = () => (dispatch: any) => {
       dispatch(fetchPostsAction(data.data));
     })
     .catch((error) => {
-      console.log("heeeeeeeey",error.message)
-      dispatch(showError(error.response?.status, error.message));
+
+      dispatch(showError(error.response.status, error.message));
+
     });
 };
 

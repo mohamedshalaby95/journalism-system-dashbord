@@ -27,7 +27,7 @@ const Login = () => {
   );
 
   const data = useSelector((state: any) => state.adminData);
-  console.log(data);
+
 
   const handleSubmit = useCallback(
     (event: React.FormEvent) => {
@@ -42,16 +42,16 @@ const Login = () => {
     [dispatch, login, hasError, navigate]
   );
 
-  if (data) {
-    console.log("naviagte should");
-    navigate("/home");
-  } else {
-    console.log("not have user inf");
-  }
   
-  // useEffect(()=>{
-
-  //  },[data])
+  useEffect(()=>{
+    if (data) {
+    
+      navigate("/home");
+    } else {
+     
+    }
+    
+   },[data])
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +76,7 @@ const Login = () => {
           margin: "auto",
           position: "absolute",
           top: "50%",
-          left: "50%",
+          left: "40%",
           transform: "translate(-50%,-50%)",
           textAlign: "center",
         }}

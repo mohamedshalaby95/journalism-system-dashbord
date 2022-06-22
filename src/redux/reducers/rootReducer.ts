@@ -33,6 +33,7 @@ const rootReducer = combineReducers({
   // post: postReducer
 
 
+
 });
 export type RootState = ReturnType<any>;
 
