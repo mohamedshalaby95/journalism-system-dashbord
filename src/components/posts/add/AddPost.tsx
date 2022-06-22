@@ -34,7 +34,7 @@ const AddPost = () => {
     description: "",
     category: "",
     subCategory: "",
-    regien: "",
+    region: "",
     image: "",
     auther: "",
   });
@@ -93,7 +93,7 @@ const AddPost = () => {
         description: "",
         category: "",
         subCategory: "",
-        regien: "",
+        region: "",
         image: "",
         auther: "",
       });
@@ -270,9 +270,9 @@ const AddPost = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              label="regien"
-              name="regien"
-              value={newPost.regien}
+              label="region"
+              name="region"
+              value={newPost.region}
               defaultValue=""
               onChange={handleChange}
             >
@@ -284,7 +284,7 @@ const AddPost = () => {
 
           {errorList
             ? errorList.map((error: any, index: any) => {
-                if (error.path[0] === "regien") {
+                if (error.path[0] === "region") {
                   return (
                     <Alert key={index} severity="error">
                       {error.message}
