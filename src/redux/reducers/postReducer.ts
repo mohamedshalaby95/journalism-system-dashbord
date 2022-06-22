@@ -13,18 +13,22 @@ const postReducer = (
   switch (type) {
     case ADD_POST:
       return [payload, ...state.data];
+
     case FETCH_POSTS:
       return {
         data: [...payload],
       };
 
+
     case DELETE_POST:
+
       return {
         data: state.data.filter((post: IPost) => {
           console.log(post._id, payload._id);
           return post._id !== payload._id;
         }),
       };
+
 
     default:
       return state;

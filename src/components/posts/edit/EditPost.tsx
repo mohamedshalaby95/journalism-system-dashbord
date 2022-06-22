@@ -33,6 +33,9 @@ const EditPost = () => {
   const [subCategory, setSubCategory] = useState("");
   const [region, setRegion] = useState("");
   const [image, setImage] = useState("");
+
+  const [file, setFile] = useState(null);
+
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   console.log(category);
@@ -92,8 +95,11 @@ const EditPost = () => {
     setSubCategory(event.target.value);
   const regionChangeHandler = (event: SelectChangeEvent) =>
     setRegion(event.target.value);
-  const imageChangeHandler = (event: SelectChangeEvent) => {
+
+  const imageChangeHandler = (event: any) => {
     setImage(event.target.value);
+    setFile(event.target.files[0]);
+
     // const formData = new FormData();
     // formData.append("file", event.target.files[0]);
     // formData.append("upload_preset", "tl55trty");
@@ -217,7 +223,23 @@ const EditPost = () => {
             </Button> */}
             <Box>upload</Box>
           </label>
-          <img src={image} alt="" />
+
+
+          {image && (
+          <img
+            src={
+              file
+                ? URL.createObjectURL(file)
+                : image
+            }
+            width="200px"
+            height="200px"
+            alt="post images"
+          />
+        )}
+
+          {/* <img src={image} alt="" /> */}
+
 
           <Button
             variant="contained"
