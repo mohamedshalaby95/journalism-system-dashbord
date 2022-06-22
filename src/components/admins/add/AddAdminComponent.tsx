@@ -41,6 +41,7 @@ const AddAdminComponent = () => {
     email: "",
     password: "",
     role: "",
+    brief: "",
   });
   const { hasError, errorStatus } = useSelector((state: any) => state?.status);
 
@@ -164,6 +165,29 @@ const AddAdminComponent = () => {
               })
             : ""}
 
+          <TextField
+            id="outlined-textarea"
+            label="Author Brief"
+            placeholder="Author Brief"
+            value={newAdmin.brief}
+            rows={6}
+            multiline
+            name="brief"
+            onChange={handleChange}
+          />
+
+          {errorList
+            ? errorList.map((error: any, index: any) => {
+                if (error.path[0] === "brief") {
+                  return (
+                    <Alert key={index} severity="error">
+                      {error.message}
+                    </Alert>
+                  );
+                }
+              })
+            : ""}
+
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Role</InputLabel>
             <Select
@@ -184,23 +208,22 @@ const AddAdminComponent = () => {
                   );
                 })}
             </Select>
-            
           </FormControl>
           {errorList
-              ? errorList.map((error: any, index: any) => {
-                  if (error.path[0] === "role") {
-                    return (
-                      <Alert
-                        key={index}
-                        severity="error"
-                        sx={{ marginBottom: "15px" }}
-                      >
-                        {error.message}
-                      </Alert>
-                    );
-                  }
-                })
-              : ""}
+            ? errorList.map((error: any, index: any) => {
+                if (error.path[0] === "role") {
+                  return (
+                    <Alert
+                      key={index}
+                      severity="error"
+                      sx={{ marginBottom: "15px" }}
+                    >
+                      {error.message}
+                    </Alert>
+                  );
+                }
+              })
+            : ""}
           {hasError ? (
             <Alert severity="error">
               {hasError ? errorStatus.message : ""}

@@ -1,4 +1,5 @@
 import {
+  Alert,
     Box,
     Button,
     FormControl,
@@ -94,6 +95,19 @@ const EditAdmin = () => {
             type="password"
             onChange={handleChange}
           />
+
+<TextField
+            id="outlined-textarea"
+            label="Author Brief"
+            placeholder="Author Brief"
+            
+            rows={6}
+            multiline
+            name="brief"
+            onChange={handleChange}
+          />
+
+         
 
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Role</InputLabel>
