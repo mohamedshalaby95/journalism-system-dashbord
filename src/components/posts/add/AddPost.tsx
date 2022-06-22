@@ -74,7 +74,7 @@ const AddPost = () => {
       if (validationPostFormResult.error) {
         setErrorList(validationPostFormResult.error.details);
       } else {
-        console.log("Here");
+        
         
         uploadImagePost(file);
       }
@@ -86,7 +86,8 @@ const AddPost = () => {
   const addedPost = useSelector((state: any) => state?.post);
 
   useEffect(() => {
-    if (addedPost.length > 0) {
+    
+    if (addedPost?.length > 0) {
       setNewPost({
         title: "",
         description: "",

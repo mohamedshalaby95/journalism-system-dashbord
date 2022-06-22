@@ -48,6 +48,7 @@ function App() {
       setUserLogged(true);
     }
   }, []);
+
   function UserIsLogin({ children }: any) {
     if (localStorage.getItem("userInf")) {
       return children;
