@@ -1,4 +1,3 @@
-
 import { IPost } from "../../types/posts";
 import { IreducerActionsProps } from "../../types/reducerPropsAction";
 import { FETCH_POSTS, DELETE_POST } from "../actions/actionTypes";
@@ -12,7 +11,6 @@ const postReducer = (
   { type, payload }: IreducerActionsProps
 ) => {
   switch (type) {
-
     case ADD_POST:
       return [payload, ...state.data];
 
@@ -23,10 +21,6 @@ const postReducer = (
 
 
     case DELETE_POST:
-     { 
-      console.log( payload._id);
-
-   
 
       return {
         data: state.data.filter((post: IPost) => {
@@ -35,14 +29,10 @@ const postReducer = (
         }),
       };
 
-    }
+
     default:
-
       return state;
-    }
-
   }
-
-
+};
 
 export default postReducer;
