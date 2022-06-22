@@ -13,11 +13,13 @@ const validateAdminForm = function validateAdminForm(login: any) {
       .max(20)
       .required()
       .regex(/^[a-zA-Z]+$/),
+
     lastName: Joi.string()
       .min(3)
       .max(20)
       .required()
       .regex(/^[a-zA-Z]+$/),
+    brief: Joi.string().min(20).max(200).required(),
     role: Joi.string().valid("administrator", "editor", "reviewer").required(),
   });
 
