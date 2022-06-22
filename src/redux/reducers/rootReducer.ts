@@ -30,7 +30,8 @@ const rootReducer = combineReducers({
   pendingPosts:pendingPostsReducer,
   postById:getPostReducer,
 
-  post: postReducer
+  // post: postReducer
+
 
 
 });
