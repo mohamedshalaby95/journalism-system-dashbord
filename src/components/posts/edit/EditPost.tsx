@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import postsApi from "../../../api/postsApi";
 import { FetchCategories } from "../../../redux/actions/CategoryActions";
+import { updatePost } from "../../../redux/actions/postAction";
 import { fetchSubCategory } from "../../../redux/actions/subCategoryAction";
 
 const Input = styled("input")({
@@ -96,6 +97,10 @@ const EditPost = () => {
     // const formData = new FormData();
     // formData.append("file", event.target.files[0]);
     // formData.append("upload_preset", "tl55trty");
+  };
+  const handleFormSubmit = (event: React.SyntheticEvent) => {
+    const data = { _id:id,title,description: desc, category, subCategory, region, image };
+    dispatch(updatePost(data));
   };
   return (
     <>
@@ -214,7 +219,12 @@ const EditPost = () => {
           </label>
           <img src={image} alt="" />
 
-          <Button variant="contained" color="success" type="submit">
+          <Button
+            variant="contained"
+            color="success"
+            type="submit"
+            onClick={handleFormSubmit}
+          >
             Add
           </Button>
         </Stack>
