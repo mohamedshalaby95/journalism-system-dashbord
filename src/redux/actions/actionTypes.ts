@@ -60,5 +60,6 @@ export const GET_ALL_USERS="USERS/GET_ALL_USERS"
 //------------------------------------------------ Post -------------------------------
 
 export const ADD_POST = "ADD_POST"
+export const UPDATE_POST="UPDATE_POST"
 
 
