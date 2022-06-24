@@ -9,7 +9,7 @@ const Home = () => {
     datasets: [
       {
         label: "Posts",
-        data: [10,5,2],
+        data: [1,1,1],
         backgroundColor: [
           "red",
           "green",

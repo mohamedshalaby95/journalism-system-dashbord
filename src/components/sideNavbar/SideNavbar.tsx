@@ -22,6 +22,9 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { Link, useLocation } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import RoleAdmin from "../roles/RoleAdmin";
+import RoleEditor from "../roles/RoleEditor";
+import RoleReviewer from "../roles/RoleReviewer";
 
 const Input = styled("input")({
   display: "none",
@@ -47,7 +50,7 @@ const SideNavbar = () => {
     formData.append("file", files[0]);
     formData.append("upload_preset", "tl55trty");
 
-    console.log("from sidebar");
+
 
     axios
       .post("https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload", formData)
@@ -60,7 +63,7 @@ const SideNavbar = () => {
         };
 
 
-        console.log(res.data.secure_url);
+    
         axios
           .patch(
             `${process.env.REACT_APP_BACKEND}/admin`,
@@ -68,8 +71,7 @@ const SideNavbar = () => {
             config
           )
           .then((res) => {
-            console.log(res.data);
-
+          
             localStorage.setItem("userInf", JSON.stringify(res.data));
             setUserInf(() => res.data);
           })
@@ -147,14 +149,17 @@ const SideNavbar = () => {
         {/* Start Section Navbar */}
 
         <Box pt={4} sx={{ width: "80%", margin: "auto" }}>
-          <Accordion
-            sx={{ marginBottom: "20px" }}
-            className={
-              getActiveClass("/admins")
-                ? classes.default.active
-                : classes.default.notActive
-            }
-          >
+         
+           {RoleAdmin()? ( 
+             <>
+             <Accordion
+             sx={{ marginBottom: "20px" }}
+             className={
+               getActiveClass("/admins")
+                 ? classes.default.active
+                 : classes.default.notActive
+             }
+           >
             <AccordionSummary
               expandIcon={<ExpandMore />}
               aria-controls="panel1a-content"
@@ -223,6 +228,8 @@ const SideNavbar = () => {
               </Link>
             </AccordionDetails>
           </Accordion>
+         </>
+            ):""}  
 
           <Accordion
             sx={{
@@ -268,7 +275,7 @@ const SideNavbar = () => {
                     : classes.default.notActiveLink
                 }
               >
-                <Typography mb={2}>Add Category</Typography>
+             {RoleAdmin()?(    <Typography mb={2}>Add Category</Typography>):""}  
               </Link>
             </AccordionDetails>
           </Accordion>
@@ -314,11 +321,15 @@ const SideNavbar = () => {
                     : classes.default.notActiveLink
                 }
               >
-                <Typography mb={2}>Add Sub Category</Typography>
+               {RoleAdmin()?(   <Typography mb={2}>Add Sub Category</Typography>):""}  
               </Link>
             </AccordionDetails>
           </Accordion>
 
+         {RoleEditor()||RoleReviewer()?(
+          <>
+         
+         
           <Accordion
             sx={{
               marginBottom: "20px",
@@ -349,7 +360,8 @@ const SideNavbar = () => {
                     : classes.default.notActiveLink
                 }
               >
-                <Typography mb={2}>Show All Posts</Typography>
+                   {RoleReviewer() ?(<Typography mb={2}>Show All Posts</Typography>):""}
+                
               </Link>
               <Link
                 to="/post/pending"
@@ -360,7 +372,7 @@ const SideNavbar = () => {
                     : classes.default.notActiveLink
                 }
               >
-                <Typography mb={2}>Show All Pending Posts</Typography>
+         {RoleEditor()?(<Typography mb={2}>Show All Pending Posts</Typography>):""}       
               </Link>
               <Link
                 to="/post/add"
@@ -371,10 +383,12 @@ const SideNavbar = () => {
                     : classes.default.notActiveLink
                 }
               >
-                <Typography mb={2}>Add Post</Typography>
+            {RoleReviewer() ?(<Typography mb={2}>Add Post</Typography>):""}    
               </Link>
             </AccordionDetails>
           </Accordion>
+          </>
+         ):""}
         </Box>
 
         {/* End Section Navbar */}
