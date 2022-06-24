@@ -51,8 +51,17 @@ const Home = () => {
     datasets: [
       {
         label: "Posts",
+
+        data: [1,1,1],
+        backgroundColor: [
+          "red",
+          "green",
+          "blue",
+        ],
+
         data: [0, 0, 0],
         backgroundColor: ["red", "green", "blue"],
+
         borderColor: "black",
         borderWidth: 2,
       },

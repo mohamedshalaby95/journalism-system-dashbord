@@ -16,6 +16,7 @@ import SnackBarCustom from "../snackbar/SnackBarCustom";
 import { deleteSubCategory, fetchSubCategory } from "../../redux/actions/subCategoryAction";
 import DeleteProp from "../../utilities/delete-popup/DeletePop";
 import UpdateSubCategoryPopus from "../update-sub-category-popup/updateSubCategoryPopup";
+import RoleAdmin from "../roles/RoleAdmin";
 export default function SubCategoryTable() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,15 +44,18 @@ export default function SubCategoryTable() {
 
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper sx={{ width: "100%", overflow: "hidden" ,marginTop:"50px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell align={"center"}>Number</TableCell>
               <TableCell align={"center"}>Title</TableCell>
+              {RoleAdmin()?(
+                <>
               <TableCell align={"center"}>Update</TableCell>
               <TableCell align={"center"}>Delete</TableCell>
+              </>):""}  
             </TableRow>
           </TableHead>
           <TableBody>
