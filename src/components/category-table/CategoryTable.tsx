@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SnackBarCustom from "../snackbar/SnackBarCustom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RoleAdmin from "../roles/RoleAdmin";
 export default function CategoryTable() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,7 +59,7 @@ export default function CategoryTable() {
   };
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper sx={{ width: "100%", overflow: "hidden" ,marginTop:"50px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -75,6 +76,8 @@ export default function CategoryTable() {
               >
                 Category
               </TableCell>
+              {RoleAdmin()?(
+                <>
               <TableCell
                 align={"center"}
                 // style={{ minWidth: column.minWidth }}
@@ -87,6 +90,7 @@ export default function CategoryTable() {
               >
                 Delete
               </TableCell>
+            </> ) :""}  
             </TableRow>
           </TableHead>
           <TableBody>

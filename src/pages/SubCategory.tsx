@@ -5,6 +5,7 @@ import CategoryTable from "../components/category-table/CategoryTable";
 import { Container } from "@mui/material";
 import AddSubCategoryPopup from "../components/add-subcategory-popup/AddSubCategoryPopup";
 import SubCategoryTable from "../components/subCaregory-table/subCategoryTable";
+import RoleAdmin from "../components/roles/RoleAdmin";
 function SubCategory() {
 
   return (
@@ -15,7 +16,7 @@ function SubCategory() {
       
       >
 
-        <AddSubCategoryPopup/>
+{RoleAdmin()?(   <AddSubCategoryPopup/>):""}  
       </Stack>
       {/* <CategoryTable /> */}
       <SubCategoryTable />

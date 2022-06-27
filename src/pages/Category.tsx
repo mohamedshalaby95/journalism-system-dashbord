@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import CategoryTable from "../components/category-table/CategoryTable";
 import { Container } from "@mui/material";
 import AddCategoryPopup from "../components/add-category-popup/AddCategoryPopup";
+import RoleAdmin from "../components/roles/RoleAdmin";
 function Category() {
   const [addCategoryPopupState,setAddCategoryPopupState] = useState(false);
 const handleAddCategoryPopupState=()=>{
@@ -17,7 +18,7 @@ const handleAddCategoryPopupState=()=>{
         //  sx={{background:"red"}}
       >
         {/* <Button variant="outlined" onClick={handleAddCategoryPopupState}>Add Category</Button> */}
-        <AddCategoryPopup state={addCategoryPopupState}  />
+        {RoleAdmin()?(    <AddCategoryPopup state={addCategoryPopupState}  />):""}  
       </Stack>
       <CategoryTable />
      
