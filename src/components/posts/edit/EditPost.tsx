@@ -209,20 +209,14 @@ const EditPost = () => {
             </Select>
           </FormControl>
 
-          <label htmlFor="mostafa">
-            <input
-              accept="image/*"
-              id="mostafa"
-              multiple
-              type="file"
-              name="mostafa"
-              onChange={imageChangeHandler}
-            />
-            {/* <Button variant="contained" component="span">
-              Upload Image
-            </Button> */}
-            <Box>upload</Box>
-          </label>
+          
+
+          <label htmlFor="update-image-post">
+        <Input accept="image/*" id="update-image-post" multiple type="file" name="file" onChange={imageChangeHandler}/>
+        <Button variant="contained" component="span">
+          Upload
+        </Button>
+      </label>
 
 
           {image && (

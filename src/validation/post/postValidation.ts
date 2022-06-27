@@ -6,7 +6,7 @@ const validatePostForm = function validatePostForm(post: any) {
     description: Joi.string().min(20).max(200).required(),
     category: Joi.string(),
     subCategory: Joi.string(),
-    regien: Joi.string().valid("egypt", "america", "england").required(),
+    region: Joi.string().valid("egypt", "america", "england").required(),
     image: Joi.string().allow(''),
     auther: Joi.string().allow('')
   });

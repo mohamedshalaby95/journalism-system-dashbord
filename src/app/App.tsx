@@ -201,9 +201,9 @@ function App() {
                           path="pending"
                           element={
                             <UserIsLogin>
-                              <ProtectedEditorRouting>
+                              <ProtectedReviewerRouting>
                                 <PendingPost />
-                              </ProtectedEditorRouting>
+                              </ProtectedReviewerRouting>
                             </UserIsLogin>
                           }
                         />
@@ -211,9 +211,9 @@ function App() {
                           path="add"
                           element={
                             <UserIsLogin>
-                              <ProtectedReviewerRouting>
+                              <ProtectedEditorRouting>
                                 <AddPost />
-                              </ProtectedReviewerRouting>
+                              </ProtectedEditorRouting>
                             </UserIsLogin>
                           }
                         />
@@ -221,9 +221,9 @@ function App() {
                           path="edit/:id"
                           element={
                             <UserIsLogin>
-                              <ProtectedReviewerRouting>
+                              <ProtectedEditorRouting>
                                 <EditPost />
-                              </ProtectedReviewerRouting>
+                              </ProtectedEditorRouting>
                             </UserIsLogin>
                           }
                         />

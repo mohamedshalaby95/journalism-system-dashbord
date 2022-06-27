@@ -8,6 +8,6 @@ export interface IPost{
     subCategory: string,
     likes: [string],
     auther: string,
-    regien: string,
+    region: string,
     comments: [string],
 }

@@ -266,17 +266,7 @@ const SideNavbar = () => {
               >
                 <Typography mb={2}>Show All Category</Typography>
               </Link>
-              <Link
-                to="/category/add"
-                style={{ textDecoration: "none" }}
-                className={
-                  getNavLinkClass("/category/add")
-                    ? classes.default.activeLink
-                    : classes.default.notActiveLink
-                }
-              >
-             {RoleAdmin()?(    <Typography mb={2}>Add Category</Typography>):""}  
-              </Link>
+              
             </AccordionDetails>
           </Accordion>
 
@@ -312,17 +302,7 @@ const SideNavbar = () => {
               >
                 <Typography mb={2}>Show All Sub Category</Typography>
               </Link>
-              <Link
-                to="/subcategory/add"
-                style={{ textDecoration: "none" }}
-                className={
-                  getNavLinkClass("/subcategory/add")
-                    ? classes.default.activeLink
-                    : classes.default.notActiveLink
-                }
-              >
-               {RoleAdmin()?(   <Typography mb={2}>Add Sub Category</Typography>):""}  
-              </Link>
+              
             </AccordionDetails>
           </Accordion>
 
