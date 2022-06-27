@@ -52,12 +52,7 @@ const Home = () => {
       {
         label: "Posts",
 
-        data: [1,1,1],
-        backgroundColor: [
-          "red",
-          "green",
-          "blue",
-        ],
+       
 
     
 

@@ -2,12 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { Alert, CardMedia, Input, Stack, TextField, Typography } from "@mui/material";
+import { Alert, CardMedia, Stack, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Icategory } from "../../types/category";
 import { UpdateCategory } from "../../redux/actions/CategoryActions";
 import validateCategoryForm from "../../validation/category/categoryValidation";
 import axios from "axios";
+import styled from "@emotion/styled";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,6 +21,10 @@ const style = {
 };
 
 const instance = axios.create();
+
+const Input = styled("input")({
+  display: "none",
+});
 
 export default function UpdateCategoryPopus({ category }: any) {
   const [open, setOpen] = React.useState(false);
@@ -134,11 +139,14 @@ export default function UpdateCategoryPopus({ category }: any) {
               onChange={handleDescriptionChange}
             />
 
-            <input
-              type="file"
-              name="file"
-              onChange={(e) => handleImageChange(e)}
-            />
+<label htmlFor="update-image-category">
+        <Input accept="image/*" id="update-image-category" multiple type="file" name="file" onChange={(e) => handleImageChange(e)} />
+        <Button variant="contained" component="span">
+          Upload
+        </Button>
+      </label>
+
+            
             <CardMedia
         component="img"
         height="194"
