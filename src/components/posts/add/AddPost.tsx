@@ -69,7 +69,7 @@ const AddPost = () => {
       setErrorList([])
       // dispatch(addPost(newPost));
       let validationPostFormResult: any = validatePostForm(newPost);
-      console.log(validationPostFormResult.error);
+  
       
       if (validationPostFormResult.error) {
         setErrorList(validationPostFormResult.error.details);

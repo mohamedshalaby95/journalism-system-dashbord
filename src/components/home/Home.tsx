@@ -54,7 +54,8 @@ const Home = () => {
 
        
 
-    
+        data: [0, 0, 0],
+        backgroundColor: ["red", "green", "blue"],
 
         borderColor: "black",
         borderWidth: 2,
