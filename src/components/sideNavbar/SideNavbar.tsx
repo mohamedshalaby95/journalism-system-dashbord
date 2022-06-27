@@ -340,7 +340,7 @@ const SideNavbar = () => {
                     : classes.default.notActiveLink
                 }
               >
-                   {RoleReviewer() ?(<Typography mb={2}>Show All Posts</Typography>):""}
+                   {RoleEditor() ?(<Typography mb={2}>Show All Posts</Typography>):""}
                 
               </Link>
               <Link
@@ -352,7 +352,7 @@ const SideNavbar = () => {
                     : classes.default.notActiveLink
                 }
               >
-         {RoleEditor()?(<Typography mb={2}>Show All Pending Posts</Typography>):""}       
+         {RoleReviewer()?(<Typography mb={2}>Show All Pending Posts</Typography>):""}       
               </Link>
               <Link
                 to="/post/add"
@@ -363,7 +363,7 @@ const SideNavbar = () => {
                     : classes.default.notActiveLink
                 }
               >
-            {RoleReviewer() ?(<Typography mb={2}>Add Post</Typography>):""}    
+            {RoleEditor() ?(<Typography mb={2}>Add Post</Typography>):""}    
               </Link>
             </AccordionDetails>
           </Accordion>
