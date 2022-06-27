@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addAdmin } from "../../../redux/actions/adminAction";
@@ -43,7 +43,9 @@ const AddAdminComponent = () => {
     role: "",
     brief: "",
   });
-  const { hasError, errorStatus } = useSelector((state: any) => state?.status);
+  const { hasError, errorStatus, success } = useSelector((state: any) => state?.status);
+  const satues = useSelector((state: any) => state?.status);
+  
 
   const handleSubmit = useCallback(
     (event: React.SyntheticEvent<EventTarget>) => {
@@ -56,6 +58,7 @@ const AddAdminComponent = () => {
         dispatch(addAdmin(newAdmin));
       }
     },
+   
     [dispatch, newAdmin]
   );
   const handleChange = useCallback(
@@ -65,6 +68,23 @@ const AddAdminComponent = () => {
     },
     [setNewAdmin]
   );
+  
+  
+
+useEffect(()=>{
+  console.log("here")
+  if(success ){
+   setNewAdmin({
+     firstName: "",
+     lastName: "",
+     email: "",
+     password: "",
+     role: "",
+     brief: "",
+   })
+
+  }
+  },[ success,dispatch ])
 
   return (
     <>
