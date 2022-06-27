@@ -6,14 +6,16 @@ import { IloginAdminProps } from "../../types/loginAdminProps";
 import adminApi from '../../api/adminApi'
 import { Add_ADMIN, DELETE_ADMIN, GET_ALL_ADMINS } from "./actionTypes";
 import { IdataAdminInformation } from "../../types/dataAdminInformation";
-const config={
-  headers:{
-   'Content-Type':'application/json',
-   Authorization:` Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjllNWMxY2U1ZTRiYTI4MjNhNmNhM2IiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY1NDU0NTQzN30.Wl2oWNZCpsK1qUCncmCtL28ZAIipiR_oyrrg4vE7zgM`
-  }
-}
 
 export const addAdmin = (data:IloginAdminProps ) => (dispatch: any) => {
+  const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
+
+  const config={
+    headers:{
+     'Content-Type':'application/json',
+     Authorization:` Bearer ${token}`
+    }
+  }
   // const {token}=JSON.parse(localStorage.getItem('userInf'))
   dispatch(startLoading());
 
@@ -43,6 +45,14 @@ export const addAdminSuccess = (admin: IdataAdminInformation) => ({
 });
 
 export const getAllAdmin=()=>(dispatch:any)=>{
+  const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
+
+  const config={
+    headers:{
+     'Content-Type':'application/json',
+     Authorization:` Bearer ${token}`
+    }
+  }
 dispatch(startLoading())
 
 adminApi.get("",config).then((response)=>{
@@ -66,6 +76,14 @@ export const getAllAdminSucces=(admins:IdataAdminInformation)=>({
 }
 )
 export const deleteAdmin=(id:string)=>(dispatch:any)=>{
+  const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
+
+  const config={
+    headers:{
+     'Content-Type':'application/json',
+     Authorization:` Bearer ${token}`
+    }
+  }
 
   dispatch(startLoading())
   adminApi.delete(`/${id}`,config).then((response)=>{

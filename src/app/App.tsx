@@ -55,7 +55,7 @@ function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("userInf");
     if (loggedInUser) {
-      console.log(changeState)
+  
 
       changeState()
       // changeStateTo()
@@ -70,7 +70,7 @@ function App() {
       return children;
     } else {
 
-      console.log("here now");
+     
       changeStateTo()
       // // navigate("/login")
       return <Navigate to="/login" />;
@@ -205,9 +205,9 @@ function App() {
                           path=""
                           element={
                             <UserIsLogin>
-                              <ProtectedReviewerRouting>
+                              <ProtectedEditorRouting>
                                 <Posts />
-                              </ProtectedReviewerRouting>
+                              </ProtectedEditorRouting>
                             </UserIsLogin>
                           }
                         />
