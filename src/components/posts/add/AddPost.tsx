@@ -80,7 +80,7 @@ const AddPost = () => {
       }
 
     },
-    [file]
+    [file,newPost]
   );
 
   const addedPost = useSelector((state: any) => state?.post);
