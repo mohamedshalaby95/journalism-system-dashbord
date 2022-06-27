@@ -7,10 +7,11 @@ import {postApi} from '../../api/post'
 import { ADD_POST, UPDATE_POST } from "./actionTypes";
 import { IdataPostInformation } from "../../types/dataPostInformation";
 import Posts from "../../pages/posts/Posts";
+const data = JSON.parse(`${localStorage.getItem("userInf")}`);
 const config={
   headers:{
    'Content-Type':'application/json',
-   Authorization:` Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjllNWMxY2U1ZTRiYTI4MjNhNmNhM2IiLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY1NDU0NTQzN30.Wl2oWNZCpsK1qUCncmCtL28ZAIipiR_oyrrg4vE7zgM`
+   Authorization:` Bearer ${data.token}`
   }
 }
 const notify = (input: string) => toast(input);
