@@ -15,9 +15,6 @@ const postReducer = (
     case ADD_POST:
       return [payload, ...state.data];
 
-    case ADD_POST:
-      return [payload, ...state.data];
-
     case FETCH_POSTS:
       return {
         data: [...payload],

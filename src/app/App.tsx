@@ -34,32 +34,45 @@ import RoleAdmin from "../components/roles/RoleAdmin";
 import ProtectedReviewerRouting from "../components/roles/ProtectedReviewer";
 import ProtectedEditorRouting from "../components/roles/ProtectedEditorRouting";
 import ProtectedAdminRouting from "../components/roles/ProtectedAdminRouting";
+import useLoged from "../hooks/IsLoginHooks"
 
 function App() {
   const [statusButton, setStatusButton] = useState<boolean>(false);
   const [toggleNavbar, setToggleNavbar] = useState<number>(-260);
   const [toggleButton, setToggleButton] = useState<number>(0);
+  const [userLogged,changeState,changeStateTo]=useLoged(false)
+ 
   const handelStatusButton = useCallback(() => {
     setStatusButton((oldStatus) => !oldStatus);
     setToggleNavbar((oldState) => (oldState < 0 ? 0 : -260));
     setToggleButton((oldState) => (oldState === 0 ? 260 : 0));
   }, [setStatusButton]);
 
-  const [userLogged, setUserLogged] = useState<boolean>(false);
 
+
+  // const [userLogged, setUserLogged] = useState<boolean>(false);
+  
   useEffect(() => {
     const loggedInUser = localStorage.getItem("userInf");
     if (loggedInUser) {
-      setUserLogged(true);
+  
+
+      changeState()
+      // changeStateTo()
+      // setUserLogged(true);
     }
-  }, [setUserLogged]);
+  }, [changeState,userLogged]);
 
   function UserIsLogin({ children }: any) {
     if (localStorage.getItem("userInf")) {
-      setUserLogged((old) => true);
-
+      // setUserLogged((old) => true);
+      changeState()
       return children;
     } else {
+
+     
+      changeStateTo()
+      // // navigate("/login")
       return <Navigate to="/login" />;
     }
   }
@@ -112,6 +125,7 @@ function App() {
                 <Routes>
                   {UserIsLogin && (
                     <>
+                
                       <Route
                         path="/home"
                         element={
@@ -124,7 +138,7 @@ function App() {
                         path=""
                         element={<Navigate to="/home" replace />}
                       />
-                      (
+                      {/* ) */}
                       <Route path="admins">
                         <Route
                           path=""
@@ -191,9 +205,9 @@ function App() {
                           path=""
                           element={
                             <UserIsLogin>
-                              <ProtectedReviewerRouting>
+                              <ProtectedEditorRouting>
                                 <Posts />
-                              </ProtectedReviewerRouting>
+                              </ProtectedEditorRouting>
                             </UserIsLogin>
                           }
                         />
@@ -201,9 +215,9 @@ function App() {
                           path="pending"
                           element={
                             <UserIsLogin>
-                              <ProtectedEditorRouting>
+                              <ProtectedReviewerRouting>
                                 <PendingPost />
-                              </ProtectedEditorRouting>
+                              </ProtectedReviewerRouting>
                             </UserIsLogin>
                           }
                         />
@@ -211,9 +225,9 @@ function App() {
                           path="add"
                           element={
                             <UserIsLogin>
-                              <ProtectedReviewerRouting>
+                              <ProtectedEditorRouting>
                                 <AddPost />
-                              </ProtectedReviewerRouting>
+                              </ProtectedEditorRouting>
                             </UserIsLogin>
                           }
                         />
@@ -221,9 +235,9 @@ function App() {
                           path="edit/:id"
                           element={
                             <UserIsLogin>
-                              <ProtectedReviewerRouting>
+                              <ProtectedEditorRouting>
                                 <EditPost />
-                              </ProtectedReviewerRouting>
+                              </ProtectedEditorRouting>
                             </UserIsLogin>
                           }
                         />
@@ -236,15 +250,16 @@ function App() {
                           }
                         />
                       </Route>
+                      <Route path="/login" element={<Login />} />
                       <Route
                         path="*"
                         element={<Navigate to="/home" replace />}
                       />
-                      <Route path="/login" element={<Login />} />
                     </>
                   )}
 
                   {/* </Route> */}
+               
                 </Routes>
               </Box>
             </BrowserRouter>

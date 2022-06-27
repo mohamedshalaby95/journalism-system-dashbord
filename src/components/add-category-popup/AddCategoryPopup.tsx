@@ -131,7 +131,19 @@ export default function AddCategoryPopup(props: propType) {
               onChange={descriptionHandler}
             />
 
-            <input type="file" name="file" onChange={(e) => imageHandler(e)} />
+            <label htmlFor="add-image-category">
+              <Input
+                accept="image/*"
+                id="add-image-category"
+                multiple
+                type="file"
+                name="file"
+                onChange={(e) => imageHandler(e)}
+              />
+              <Button variant="contained" component="span">
+                Upload
+              </Button>
+            </label>
 
             {errorList
               ? errorList.map((error: any, index: any) => {

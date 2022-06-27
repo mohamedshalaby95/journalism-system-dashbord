@@ -9,8 +9,14 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../redux/actions/loginAdmin";
+import { useNavigate } from "react-router-dom";
+import useLoged from "../../hooks/IsLoginHooks";
+// import {userLogout} from ""
 
 const Navbar = () => {
+  const [userLogged,changeState, changeStateTo]=useLoged(false)
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -18,11 +24,20 @@ const Navbar = () => {
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
+  const navigate=useNavigate()
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  const dispatch:any=useDispatch()
+const handelClickLogOut=React.useCallback(()=>{
+   dispatch(userLogout())
+   changeStateTo()
+  navigate("/")
+   
+     
+},[ dispatch])
   return (
     <>
       <AppBar position="static" sx={{backgroundColor:"#fff",color:"#000"}}>
@@ -95,7 +110,7 @@ const Navbar = () => {
                 </MenuItem>
 
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Logout</Typography>
+                  <Typography textAlign="center" onClick={handelClickLogOut}>Logout</Typography>
                 </MenuItem>
               </Menu>
             </Box>

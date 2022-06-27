@@ -11,6 +11,6 @@ export interface Ipost {
   category: string;
   subCategory: string;
   // auther: string;
-  // regien: string;
+  // region: string;
   // status: string;
 }
