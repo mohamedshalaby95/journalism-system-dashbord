@@ -294,7 +294,14 @@ const AddPost = () => {
               })
             : ""}
 
-          <input type="file" name="file" onChange={(e) => imageHandler(e)} />
+<label htmlFor="add-image-post">
+        <Input accept="image/*" id="add-image-post" multiple type="file" name="file" onChange={(e) => imageHandler(e)} />
+        <Button variant="contained" component="span">
+          Upload
+        </Button>
+      </label>
+
+         
 
           {errorList
             ? errorList.map((error: any, index: any) => {

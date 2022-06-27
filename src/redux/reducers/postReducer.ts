@@ -36,7 +36,7 @@ const postReducer = (
       };
 
         
-    }
+    
     default:
       return state;
 
@@ -44,14 +44,6 @@ const postReducer = (
 }
 
 
-export default postReducer
-
-
-
-    default:
-      return state;
-  }
-};
 
 export default postReducer;
 
