@@ -10,7 +10,7 @@ export const  adminLoginReducer=(state=null,{type,payload}:IreducerActionsProps)
             return payload
         }
       
-        case LOGOUT_ADMIN: return({})
+        case LOGOUT_ADMIN: return(null)
 
         default :return state
     }
