@@ -17,7 +17,9 @@ import adminApi from "../../api/adminApi";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { Badge } from "@mui/material";
-// import NotificationsIcon from "@mui/icons-material/Notifications";
+
+import NotificationsIcon from "@mui/icons-material/Notifications";
+
 // import {userLogout} from ""
 
 const Navbar = () => {
@@ -25,6 +27,11 @@ const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+
+
+  const [anchorElNotification, setAnchorElNotification] =
+    React.useState<null | HTMLElement>(null);
+
   const [socket, setSocket] = useState(() =>
     io(`${process.env.REACT_APP_BACKEND}`)
   );
@@ -32,11 +39,24 @@ const Navbar = () => {
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
+
+
+  const handleOpenNotificationMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNotification(event.currentTarget);
+  };
+
+
   const navigate = useNavigate();
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+
+  const handleCloseNotificationMenu = () => {
+    setAnchorElNotification(null);
+  };
+
   useEffect(() => {
     const { email } = JSON.parse(`${localStorage.getItem("userInf")}`);
     console.log(email);
@@ -131,18 +151,41 @@ const Navbar = () => {
                 </IconButton>
               </Tooltip>
 
+
+              <Tooltip title="Open settings">
+                <IconButton
+                  onClick={handleOpenNotificationMenu}
+                  sx={{ paddingLeft: 2 }}
+                >
+                  <Badge badgeContent={notify?.length} color="error">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              </Tooltip>
+
+              {/* <MenuItem>
+
               <MenuItem>
+
                 <IconButton
                   size="large"
                   aria-label="show 17 new notifications"
                   color="error"
                 >
                   <Badge badgeContent={notify?.length} color="error">
+
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+                <p>Notifications</p>
+              </MenuItem> */}
+
                     {/* <NotificationsIcon /> */}
                   </Badge>
                 </IconButton>
                 <p>Notifications</p>
               </MenuItem>
+
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
@@ -168,6 +211,30 @@ const Navbar = () => {
                     Logout
                   </Typography>
                 </MenuItem>
+              </Menu>
+
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElNotification}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElNotification)}
+                onClose={handleCloseNotificationMenu}
+              >
+                {notify &&
+                  notify.map((no: any) => {
+                    <MenuItem onClick={handleCloseNotificationMenu}>
+                      <Typography textAlign="center">Ahmed</Typography>
+                    </MenuItem>;
+                  })}
               </Menu>
             </Box>
           </Toolbar>
