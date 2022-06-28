@@ -49,13 +49,9 @@ const PostDetails = () => {
                     component="img"
                     alt="green iguana"
                     height="300"
-                    image="/images/shalaby.jpg"
+                    image={post?.image}
                   />
-                  <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                      {post?.description}
-                    </Typography>
-                  </CardContent>
+                  
                 </Card>
               </Item>
             </Grid>
@@ -87,6 +83,14 @@ const PostDetails = () => {
                           Subcategory
                         </TableCell>
                         <TableCell>{post?.subCategory}</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell
+                          sx={{ fontSize: "1.2rem", fontWeight: "900" }}
+                        >
+                          Description
+                        </TableCell>
+                        <TableCell>{post?.description}</TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell

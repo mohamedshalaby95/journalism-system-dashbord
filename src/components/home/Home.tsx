@@ -16,12 +16,14 @@ const Home = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log(posts);
+    
     posts.data.filter((post: any) => {
-      if (post.status === "pending") {
+      if (post.status == "pending") {
         setPendingPosts((oldState) => oldState + 1);
-      } else if (post.status === "accepted") {
+      } else if (post.status == "accepted") {
         setActivePosts((oldState) => oldState + 1);
-      } else if (post.status === "canceled") {
+      } else if (post.status == "canceled") {
         setCanceledPosts((oldState) => oldState + 1);
       }
     });

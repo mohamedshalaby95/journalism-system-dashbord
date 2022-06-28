@@ -63,7 +63,7 @@ const Posts = () => {
                         <IconButton aria-label="delete" size="large">
                           <Link
                             style={{ textDecoration: "none" }}
-                            to={`/post/22`}
+                            to={`/post/${row._id}`}
                           >
                             <RemoveRedEye color="primary" />
                           </Link>
