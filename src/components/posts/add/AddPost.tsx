@@ -60,7 +60,7 @@ const AddPost = () => {
     getAllCategories();
   }, []);
 
-  const { hasError, errorStatus } = useSelector((state: any) => state?.status);
+  const { hasError, errorStatus, success } = useSelector((state: any) => state?.status);
 
   const handleSubmit = useCallback(
     (event: React.SyntheticEvent<EventTarget>) => {
@@ -83,7 +83,7 @@ const AddPost = () => {
 
   useEffect(() => {
     
-    if ( addedPost?.length > 0) {
+    if ( success) {
       console.log(addPost?.length);
       console.log(addPost?.length > 0);
       setNewPost({
@@ -97,7 +97,7 @@ const AddPost = () => {
       });
       setFile("");
     }
-  }, [addedPost]);
+  }, [success,dispatch]);
 
   
 
