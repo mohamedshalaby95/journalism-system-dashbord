@@ -25,6 +25,7 @@ const style = {
   width: 400,
   bgcolor: "background.paper",
   p: 4,
+  
 };
 type propType = { state: boolean };
 
