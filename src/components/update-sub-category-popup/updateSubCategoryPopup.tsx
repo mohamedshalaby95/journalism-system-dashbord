@@ -52,8 +52,8 @@ export default function UpdateSubCategoryPopus({ subCategory }: any) {
   React.useEffect(() => {
     if (categories.length) {
       setSubCategoryParent(
-        categories.find((element: any) => element._id === subCategory.parent)
-          .title
+        categories?.find((element: any) => element._id === subCategory.parent)
+          ?.title
       );
       //   console.log("test",categories.find((element: any) =>{
       //     console.log(element._id)
