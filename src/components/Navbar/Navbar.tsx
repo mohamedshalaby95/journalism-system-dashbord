@@ -13,6 +13,11 @@ import { useDispatch } from "react-redux";
 import { userLogout } from "../../redux/actions/loginAdmin";
 import { useNavigate } from "react-router-dom";
 import useLoged from "../../hooks/IsLoginHooks";
+import adminApi from "../../api/adminApi";
+import { useEffect ,useState} from "react";
+import {io} from "socket.io-client"
+import { Badge } from "@mui/material";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 // import {userLogout} from ""
 
 const Navbar = () => {
@@ -20,7 +25,8 @@ const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
-
+  const [socket,setSocket]= useState(()=> io(`${process.env.REACT_APP_BACKEND}`))
+  const [notify,setNotify]=useState<any>([])
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -29,7 +35,45 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  useEffect(()=>{
+    const {email}= JSON.parse(`${localStorage.getItem("userInf")}`);
+    console.log(email)
+    socket.on("connect",()=>{
+    console.log("here nav");
+    
+      socket.emit("addUser",email)
+   
+      
+      
+    })
+ 
+    
+  },[])
+  useEffect(()=>{
+   
+    socket.on("hamada",(data:any)=>{
+      console.log(data)
+      setNotify((old:any)=> [...old,data])
+    })
+    console.log(notify)
 
+
+  },[])
+  useEffect(()=>{
+    const {token} = JSON.parse(`${localStorage.getItem("userInf")}`);
+
+    const config={
+      headers:{
+       'Content-Type':'application/json',
+       Authorization:` Bearer ${token}`
+      }
+    }
+    adminApi.get(`/notify`,config).then((res)=>{
+      setNotify(res.data)
+    }).catch((err)=>{
+      // alert(err)
+    })
+  },[])
   const dispatch:any=useDispatch()
 const handelClickLogOut=React.useCallback(()=>{
    dispatch(userLogout())
@@ -89,6 +133,19 @@ const handelClickLogOut=React.useCallback(()=>{
                   />
                 </IconButton>
               </Tooltip>
+             
+              <MenuItem >
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="error"
+        >
+          <Badge badgeContent={notify?.length} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem>
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"

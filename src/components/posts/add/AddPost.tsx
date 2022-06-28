@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { categoryApi } from "../../../api/category";
 import { addPost } from "../../../redux/actions/postAction";
 import validatePostForm from "../../../validation/post/postValidation";
+import {io} from "socket.io-client"
 
 const Input = styled("input")({
   display: "none",
@@ -28,6 +29,7 @@ const AddPost = () => {
   const navigate = useNavigate();
   const dispatch: any = useDispatch();
   const [file, setFile] = React.useState<any>();
+  const [socket,setSocket]= useState(()=> io(`${process.env.REACT_APP_BACKEND}`))
   const [errorList, setErrorList] = useState([]);
   const [newPost, setNewPost] = useState({
     title: "",
@@ -111,6 +113,9 @@ const AddPost = () => {
     await instance
       .post("https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload", data)
       .then((res) => {
+        const {email} = JSON.parse(`${localStorage.getItem("userInf")}`);
+        
+        socket.emit("postAdd",email)
         dispatch(addPost({ ...newPost, image: res.data.secure_url }));
       })
       .catch((err) => {
