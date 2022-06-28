@@ -2,8 +2,8 @@ import Joi from "joi";
 
 const validatePostForm = function validatePostForm(post: any) {
   const schema = Joi.object({
-    title: Joi.string().min(3).max(20).required().regex(/^[a-zA-Z]+$/),
-    description: Joi.string().min(20).max(200).required(),
+    title: Joi.string().min(3).max(100).required(),
+    description: Joi.string().min(20).max(1000).required(),
     category: Joi.string(),
     subCategory: Joi.string(),
     region: Joi.string().valid("egypt", "america", "england").required(),
