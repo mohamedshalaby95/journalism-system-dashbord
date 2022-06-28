@@ -114,8 +114,8 @@ const AddPost = () => {
       .post("https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload", data)
       .then((res) => {
         const {email} = JSON.parse(`${localStorage.getItem("userInf")}`);
-        
-        socket.emit("postAdd",email)
+      
+      
         dispatch(addPost({ ...newPost, image: res.data.secure_url }));
       })
       .catch((err) => {
