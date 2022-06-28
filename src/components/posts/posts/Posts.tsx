@@ -47,7 +47,7 @@ const Posts = () => {
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
-          {posts.data.length === 0 ? (
+          {posts?.data.length === 0 ? (
             <div>looding</div>
           ) : (
             <TableBody>

@@ -5,6 +5,13 @@ import PostsApi from "../../api/postsApi";
 import { toast } from "react-toastify";
 
 const notify = (input: string) => toast(input);
+const data = JSON.parse(`${localStorage.getItem("userInf")}`);
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${data.token}`,
+  },
+};
 
 export const fetchPostsAction = (data: [IPost]) => {
   return {
@@ -43,7 +50,7 @@ export const deletePostAction = (data: [IPost]) => {
 // delete function
 export const deletePost = (id: string) => (dispatch: any) => {
   dispatch(startLoading());
-  PostsApi.delete(`/delete/${id}`)
+  PostsApi.delete(`/delete/${id}`, config)
     .then((data) => {
       dispatch(showSuccess());
       dispatch(deletePostAction(data.data));
