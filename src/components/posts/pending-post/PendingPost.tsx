@@ -16,12 +16,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {acceptPost, cancelPendingPost, getPendingPosts} from '../../../redux/actions/pendingPosts'
 import CircularIndeterminate from "../../spinner/spinner";
 import CancelIcon from '@mui/icons-material/Cancel';
+import {io} from "socket.io-client"
 
 const PendingPost = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
 const pendingPosts=useSelector((state:any)=> state?.pendingPosts)
+const [socket,setSocket]= useState(()=> io(`${process.env.REACT_APP_BACKEND}`))
 
 const{loading}=useSelector((state:any)=> state?.status)
 const dispatch:any=useDispatch()
@@ -42,10 +44,12 @@ const dispatch:any=useDispatch()
   },[dispatch])
 
   const handelClickAccept=useCallback((id:string)=>{
+    socket.emit("postAccept",id)
   dispatch(acceptPost(id))
 
   },[dispatch,acceptPost])
   const handelClickDeletePost=useCallback((id:string)=>{
+    socket.emit("postCancell",id)
     dispatch(cancelPendingPost(id))
   
     },[dispatch,cancelPendingPost])
