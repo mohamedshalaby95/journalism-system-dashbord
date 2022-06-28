@@ -65,29 +65,27 @@ const AddPost = () => {
   const handleSubmit = useCallback(
     (event: React.SyntheticEvent<EventTarget>) => {
       event.preventDefault();
-      
-      setErrorList([])
+
+      setErrorList([]);
       // dispatch(addPost(newPost));
       let validationPostFormResult: any = validatePostForm(newPost);
-  
-      
+
       if (validationPostFormResult.error) {
         setErrorList(validationPostFormResult.error.details);
       } else {
-        
-        
         uploadImagePost(file);
       }
-
     },
-    [file,newPost]
+    [file, newPost]
   );
 
   const addedPost = useSelector((state: any) => state?.post);
 
   useEffect(() => {
     
-    if (addedPost?.length > 0) {
+    if ( addedPost?.length > 0) {
+      console.log(addPost?.length);
+      console.log(addPost?.length > 0);
       setNewPost({
         title: "",
         description: "",
@@ -100,6 +98,8 @@ const AddPost = () => {
       setFile("");
     }
   }, [addedPost]);
+
+  
 
   const uploadImagePost = async (files: any) => {
     const data = new FormData();
@@ -162,7 +162,7 @@ const AddPost = () => {
             onChange={handleChange}
           />
 
-{errorList
+          {errorList
             ? errorList.map((error: any, index: any) => {
                 if (error.path[0] === "title") {
                   return (
@@ -185,7 +185,7 @@ const AddPost = () => {
             onChange={handleChange}
           />
 
-{errorList
+          {errorList
             ? errorList.map((error: any, index: any) => {
                 if (error.path[0] === "description") {
                   return (
@@ -294,14 +294,19 @@ const AddPost = () => {
               })
             : ""}
 
-<label htmlFor="add-image-post">
-        <Input accept="image/*" id="add-image-post" multiple type="file" name="file" onChange={(e) => imageHandler(e)} />
-        <Button variant="contained" component="span">
-          Upload
-        </Button>
-      </label>
-
-         
+          <label htmlFor="add-image-post">
+            <Input
+              accept="image/*"
+              id="add-image-post"
+              multiple
+              type="file"
+              name="file"
+              onChange={(e) => imageHandler(e)}
+            />
+            <Button variant="contained" component="span">
+              Upload
+            </Button>
+          </label>
 
           {errorList
             ? errorList.map((error: any, index: any) => {
