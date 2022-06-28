@@ -24,7 +24,8 @@ const postReducer = (
       return {
         data: state.data.filter((post: IPost) => {
           console.log(post._id, payload._id);
-          return post._id !== payload._id;
+         console.log(post._id === payload)
+          return post._id !== payload;
         }),
       };
 
