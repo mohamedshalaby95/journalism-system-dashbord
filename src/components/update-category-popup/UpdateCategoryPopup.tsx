@@ -18,6 +18,8 @@ const style = {
   width: 400,
   bgcolor: "background.paper",
   p: 4,
+  height: 400,
+  overflowY:"scroll",
 };
 
 const instance = axios.create();
