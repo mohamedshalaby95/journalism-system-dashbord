@@ -49,7 +49,7 @@ export const updatePostSuccess = (post: IdataPostInformation) => ({
 export const updatePost = (post: IdataPostInformation) => (dispatch: any) => {
   dispatch(startLoading());
   postApi
-    .put("/update", post)
+    .put("/update", post, config)
     .then((response) => {
       dispatch(updatePostSuccess(response.data));
       dispatch(showSuccess());
